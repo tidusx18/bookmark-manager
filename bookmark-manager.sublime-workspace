@@ -1,0 +1,719 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"handle",
+				"handleDelete\t(id: any) => any"
+			],
+			[
+				"Icon",
+				"DeleteIcon\tany"
+			],
+			[
+				"List",
+				"ListItem\tany"
+			],
+			[
+				"input",
+				"inputValue"
+			],
+			[
+				"hand",
+				"handleInputChange\t(selection: any) => any"
+			],
+			[
+				"selec",
+				"selectedItem\tany"
+			],
+			[
+				"no",
+				"noCategoryMatch\tany"
+			],
+			[
+				"nob",
+				"noBookmarkMatch\tany"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"found",
+				"foundbookmark\tempty"
+			],
+			[
+				"foun",
+				"foundCategory\tempty"
+			],
+			[
+				"Menu",
+				"MenuItem\tany"
+			],
+			[
+				"boo",
+				"bookmarks\tempty"
+			],
+			[
+				"res",
+				"results\tany"
+			],
+			[
+				"co",
+				"correctAnswers"
+			],
+			[
+				"c",
+				"correctAnswers"
+			],
+			[
+				"que",
+				"question"
+			],
+			[
+				"quiz",
+				"QuizPool"
+			],
+			[
+				"cur",
+				"currentQuestion"
+			],
+			[
+				"an",
+				"answer"
+			],
+			[
+				"ans",
+				"answer"
+			],
+			[
+				"__eva",
+				"__evaluatePrompt"
+			],
+			[
+				"ques",
+				"questionAnswer"
+			],
+			[
+				"__add",
+				"__addAnswer"
+			],
+			[
+				"tr",
+				"trueFalse"
+			],
+			[
+				"m",
+				"multipleAnswer"
+			],
+			[
+				"mul",
+				"multipleChoice"
+			],
+			[
+				"__is",
+				"__isTrueFalse"
+			],
+			[
+				"answer",
+				"correctAnswers"
+			],
+			[
+				"mu",
+				"multipleChoice"
+			],
+			[
+				"__",
+				"__getQuestionType"
+			],
+			[
+				"answe",
+				"answers"
+			],
+			[
+				"p",
+				"prompt"
+			],
+			[
+				"mat",
+				"matchPatterns"
+			],
+			[
+				"pro",
+				"processCourses"
+			],
+			[
+				"cours",
+				"courseId"
+			],
+			[
+				"new",
+				"newString"
+			],
+			[
+				"weekl",
+				"weeklyDates"
+			],
+			[
+				"qu",
+				"questionNumber"
+			],
+			[
+				"in",
+				"innerText"
+			],
+			[
+				"get",
+				"getAllUrlParams"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 137.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"jsx",
+				"Set Syntax: JSX"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"inde",
+				"Auto indent"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"xml",
+				"Indent XML"
+			],
+			[
+				"incre",
+				"Increment Selection"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"pl",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"keybin",
+				"Preferences: Key Bindings"
+			],
+			[
+				"line",
+				"Sort Lines"
+			],
+			[
+				"keyb",
+				"Preferences: Key Bindings"
+			],
+			[
+				"pla",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"block",
+				"Toggle Block Comment"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/bookmark",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/form",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/modal",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/nav",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/tag",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/utility"
+	],
+	"file_history":
+	[
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/nav/index.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/index.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/utility/utilities.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/tag/index.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/bookmark/index.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/index.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Filter.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Filter.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/EditBookmark.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Bookmark.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Tags.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Category.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Bookmark.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/tag.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes/tag.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Bookmarks.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Nav.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/bookmark.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/AddBookmark.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/Canvas Quick Scripts/BatchEditModuleTitles.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/Canvas Quick Scripts/Canvas Delete All Question Banks.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/CreatorPro Userscripts/ReplaceDatesCreatorPro.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/FavoriteBookmark.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Favorites.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/package.json",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/node_modules/@material-ui/icons/Delete.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/models/bookmark.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes/bookmark.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Notes.txt",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/ExampleOldAddBookmark.jsx",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/Google Chrome/get_started_complete/manifest.json",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/Canvas Quick Scripts/UpdatePage.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/canvas-utilities/userscripts/course/quickLinks.user.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/Canvas Quick Scripts/UpdateQuizQuestionPoints.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/server.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/models/tag.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/BookmarkManager.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/Canvas Quick Scripts/FavoriteBookmark.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/Canvas Quick Scripts/utilities.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Nav.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/notes.txt",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Search.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/AddCategory.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/AlertDialog.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes/category.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/category.js",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/Users/victorid/Downloads/hosts",
+		"/C/Users/victorid/OneDrive - Florida International University/Temp/hosts",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/public/index.html",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/models/category.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/package.json",
+		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/Babel/Babel.sublime-settings",
+		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/ESLint/ESLint.sublime-settings",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes/getCategory.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes/getBookmark.js",
+		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/User/Terminal.sublime-settings",
+		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/User/TerminalinPackages/Default.sublime-keymap",
+		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/Terminal/Terminal.sublime-settings",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/bb-quiz-pool-parser/api/quizParser.js",
+		"/C/Users/victorid/AppData/Local/Temp/Temp1_test_package_minfiles.zip/example/choice_multiple.xml",
+		"/C/Users/victorid/Documents/Projects/bb-quiz-pool-parser/Notes.txt",
+		"/C/Users/victorid/Documents/Projects/bb-quiz-pool-parser/controllers/resultController.js",
+		"/Z/Private/victorid/Documents/Full Time Faculty.txt",
+		"/C/Users/victorid/Google Drive/Programming Projects/AutoHotKey/DownloadsFolderShortcut.ahk",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/GeneralWorkSpace.sublime-project",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/CourseCopyFromSandbox.js",
+		"/C/Users/victorid/Documents/Projects/local-Library-tutorial/package.json",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/POST-IRMA-ReplaceDatesBB.js",
+		"/C/Users/victorid/Downloads/1178 - SPC3425 - Small Group Communication - Section RVC - Fall 2017 - Edit Group Set Enrollments.png",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/SelectGroupMembers.js",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/RemoveDroppedStudentsFromGroups.js",
+		"/Z/Private/victorid/Documents/Meetings/Meeting Notes.txt",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/POST-IRMA-ReplaceDatesCreatorPro.js",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/OpenFirstItemEditView.js",
+		"/C/Users/victorid/Downloads/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz/res00001.dat",
+		"/C/Users/victorid/Downloads/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz/imsmanifest.xml",
+		"/C/Users/victorid/Downloads/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz/.bb-package-sig",
+		"/C/Users/victorid/Downloads/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz/.bb-package-info",
+		"/C/Users/victorid/Downloads/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz/res00006.dat",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/POST-IRMA-ReplaceDates.js",
+		"/C/Users/victorid/Downloads/GistBox Data - Thu Sep 21 2017",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/ListAssignmentDatesFromSyllabus,js",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730/res00010.dat",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730/res00107.dat",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730/imsmanifest.xml",
+		"/C/Users/victorid/Google Drive/FIU Online/PEP Notes.txt",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730/res00004.dat",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730/res00001.dat",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730/res00007.dat",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730/res00003.dat",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730/res00002.dat",
+		"/C/Users/victorid/Downloads/ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035730.zip",
+		"/C/Users/victorid/Downloads/ArchiveFile_NC-NEC1000DanielVictoriano_03292016-10000_20170914035845.zip",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/QuizPoolParserIdeas.js",
+		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/victorid/Google Drive/Programming Projects/AutoHotKey/AutomateBrowserPrinting.ahk",
+		"/C/Users/victorid/Google Drive/Programming Projects/Javascript/Misc/OpenEditAllDiscussionBoards.js",
+		"/C/Users/victorid/Downloads/test.html",
+		"/C/Users/victorid/Downloads/24095649-instructor-engagement-copy.htm",
+		"/C/Users/victorid/AppData/Roaming/Microsoft/Templates/Untitled.oft",
+		"/Z/Private/victorid/Documents/Blackboard/Course/Export and Archive/imsmanifest.xml",
+		"/C/Users/victorid/Downloads/cordata/cordata0.txt",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/algeria/algeria.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/angola/angola.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/benin/benin.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/botswana/botswana.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/burkina_faso/burkina_faso.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/burundi/burundi.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/cameroon/cameroon.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/cape_verde/cape_verde.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/central_african_republic/central_african_republic.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/chad/chad.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/comoros/comoros.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/cote_dIvoire/cote_dIvoire.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/democratic_republic_congo/democratic_republic_congo.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/djibouti/djibouti.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/egypt/egypt.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/equatorial_guinea/equatorial_guinea.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/eritrea/eritrea.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/ethiopia/ethiopia.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/gabon/gabon.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/gambia/gambia.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/ghana/ghana.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/guinea/guinea.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/guinea_bissau/guinea_bissau.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/kenya/kenya.html"
+	],
+	"find":
+	{
+		"height": 41.0
+	},
+	"find_in_files":
+	{
+		"height": 105.0,
+		"where_history":
+		[
+			"C:\\Users\\victorid\\OneDrive - Florida International University\\Projects\\React\\bookmark-manager\\client\\src",
+			"C:\\Users\\victorid\\OneDrive - Florida International University\\Projects\\React\\bookmark-manager",
+			"C:\\Users\\victorid\\Google Drive\\Programming Projects\\Javascript\\Misc",
+			"C:\\Users\\victorid\\Downloads\\WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168\\continents",
+			"C:\\Users\\victorid\\Documents\\World Explorer Project\\continents",
+			"C:\\Users\\victorid\\Documents\\World Explorer Project\\continents\\africa",
+			"africa"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"index.js",
+			"Bookmarks",
+			"AddTag",
+			"Filter",
+			"filter",
+			"Filter",
+			"<IconButton>",
+			"IconButton",
+			"propTypes",
+			"PropTypes",
+			".",
+			"last",
+			"DeleteIcon",
+			"bookmark",
+			"handleChange",
+			"ListItem",
+			"Button",
+			"select",
+			"filteredTags",
+			"handleTagsMenuItemClick",
+			"input",
+			"filteredTags",
+			"this",
+			"props",
+			"setModalState",
+			"res",
+			"prop",
+			"res",
+			"bookmarks",
+			"bookmark",
+			"res",
+			"this",
+			"handleDelete",
+			");\n",
+			"title",
+			"item",
+			"prop",
+			"name",
+			"bool",
+			"tags",
+			"existingTags",
+			"selectTagsInput",
+			"handleChipClick",
+			"item",
+			"this.state.tagsInputValue",
+			"tagsInputValue",
+			"inputValue",
+			"handleTagsInputChange",
+			"handleMenuItemClick",
+			"bookmarks",
+			"Bookmarks",
+			"bookmarks",
+			"Bookmarks",
+			"Favorites",
+			"Tags",
+			"FavoriteBookmark",
+			"absolute",
+			"abso",
+			"Grid",
+			"this.state.tags",
+			"handleDelete",
+			"this",
+			"this2",
+			"this2=2",
+			"this2",
+			"setModalState",
+			"handleEdit",
+			"setModalvalue",
+			"handleInputChange",
+			",",
+			"GET",
+			"setModalvalue",
+			"getModalvalue",
+			"getModalValue",
+			"getProp",
+			"setProp",
+			"getProperty",
+			"getProp",
+			"setModalvalue",
+			"getModalvalue",
+			"getValue",
+			"getModalvalue",
+			"getModalValue",
+			"handleSubmit",
+			"propValue",
+			"propName",
+			"getModalValues",
+			"handleModalInputChange",
+			"updateModalProps",
+			"handleFilterInputChange",
+			"updateModalProps",
+			"updatemodalprops",
+			"getModalValues",
+			"props",
+			"this",
+			"{\n",
+			"handleTagsInputChange",
+			"    ",
+			"import React from 'react';\nimport { withStyles } from '@material-ui/core/styles';\nimport Dialog from '@material-ui/core/Dialog';\nimport Button from '@material-ui/core/Button';\nimport Input from '@material-ui/core/Input';\nimport Chip from '@material-ui/core/Chip';\nimport MenuItem from '@material-ui/core/MenuItem';\nimport Paper from '@material-ui/core/Paper';\n\nconst styles = theme => ({\n  button: {\n    margin: theme.spacing.unit\n  },\n  input: {\n    'display': 'block',\n    'text-align': 'center',\n    'margin-top': '20px'\n  },\n  paper: {\n  \t'display': 'block',\n    'margin-top': '5px',\n    'max-height': '200px',\n    'overflow': 'auto',\n  },\n  chips: {\n    display: 'flex',\n    flexWrap: 'wrap',\n    padding: '5px',\n    margin: '5px',\n  },\n  chip: {\n    margin: theme.spacing.unit / 4,\n  },\n});\n\nclass AddBookmark extends React.Component {\n\n  constructor(props) {\n    super(props);\n\n    this.state = {\n      existingTags: [],\n      tags: [],\n      title: '',\n      url: '',\n      existingBookmark: null,\n      inputValue: ''\n    };\n\n    this.handleInputChange = this.handleInputChange.bind(this);\n    this.handleTagsInputChange = this.handleTagsInputChange.bind(this);\n    this.handleMenuItemClick = this.handleMenuItemClick.bind(this);\n    this.handleSubmit = this.handleSubmit.bind(this);\n  }\n\n  componentDidMount() {\n  \tfetch('http://localhost:3005/tags')\n  \t\t.then( res => res.json() )\n  \t\t.then( res => {\n  \t\t\tthis.setState({\n\t        \texistingTags: res,\n\t        });\n  \t\t});\n\n    chrome.tabs.query({ currentWindow: true, active: true }, res => {\n    \tfetch(`http://localhost:3005/bookmarks/find?prop=url&value=${res[0].url}`)\n    \t\t.then( response => response.json() )\n    \t\t.then( response => {\n          if(response.length > 0) {\n\t\t      \t\tthis.setState({\n                existingBookmark: response[0],\n\t\t      \t\t\ttitle: response[0].title,\n\t\t      \t\t\turl: response[0].url,\n\t\t      \t\t\ttags: response[0].tags\n\t\t      \t\t});\n\n              return null;\n    \t\t\t}\n\n    \t\t\tthis.setState({\n            title: res[0].title,\n            url: res[0].url\n          })\n    \t\t});\n    });\n  }\n\n  handleInputChange(event) {\n    this.setState({[event.target.name]: event.target.value});\n  }\n\n  handleTagsInputChange(event) {\n    event ? this.setState({ [event.target.name]: event.target.value }) : null;\n  }\n\n  handleMenuItemClick(selectedItem) {\n    this.setState({\n      tags: this.state.tags.concat(selectedItem),\n      inputValue: '',\n    })\n  }\n\n  handleSubmit(event) {\n    event.preventDefault();\n\n    // create or update bookmark\n    let urlFragment = this.state.existingBookmark ? `${this.state.existingBookmark._id}/update` : 'create';\n    let method = this.state.existingBookmark ? 'PUT' : 'POST';\n\n    fetch(`http://localhost:3005/bookmarks/${urlFragment}`, {\n    \tmethod: method,\n    \theaders: {\n    \t\t'Content-Type': 'application/json'\n    \t},\n    \tbody: JSON.stringify({\n        tags: this.state.tags,\n        title: this.state.title,\n        url: this.state.url\n      })\n    });\n  }\n\n\n\trender() {\n\t\tconst { classes } = this.props;\n\n\t\treturn (\n\t\t\t<form onSubmit={this.handleSubmit}>\n\t        <Input\n\t          autoFocus\n\t          name='inputValue'\n\t          className={classes.input}\n\t          placeholder='Select tags'\n\t          value={this.state.inputValue}\n\t          onChange={this.handleTagsInputChange}\n\t        />\n\t        {\n\t          this.state.inputValue ?\n\t          <Paper className={classes.paper}>\n\t            {\n\t              this.state.existingTags\n\t                .filter(item => !this.state.inputValue || item.name.toLowerCase().includes(this.state.inputValue.toLowerCase()))\n\t                .map((item, index) => (\n\t                  <MenuItem\n\t                    key={item._id}\n\t                    onClick={ event => this.handleMenuItemClick(item) }\n\t                  >\n\t                    {item.name}\n\t                  </MenuItem>\n\t                ))\n\t              }\n\t          </Paper> : null\n\t        }\n\t        <div>\n\t          {\n\t            this.state.tags.length > 0 ? this.state.tags.map( tag => {\n\t            return <Chip\n\t                      className={classes.chip}\n\t                      label={tag.name}\n\t                      onDelete={ () => {\n\t                        this.setState({\n\t                          tags: this.state.tags.filter( item => item.name !== tag.name )\n\t                        })\n\t                      }}\n\t                    />\n\t            }) : null\n\t          }\n\t        </div>\n\t        <Input\n\t          name='title'\n\t          className={classes.input}\n\t          inputProps={{\n\t\t\t\t      placeholder: 'Bookmark Title',\n\t            autoComplete: 'off',\n\t            value: this.state.title,\n\t          }}\n\t          onChange={this.handleInputChange}\n\t        />\n\t        <Input\n\t          \tname='url'\n\t          \tclassName={classes.input}\n\t          \tinputProps={{\n\t            \tplaceholder: 'URL',\n\t            \tautoComplete: 'off',\n                value: this.state.url,\n\t\t\t  \t}}\n\t\t\t\tonChange={this.handleInputChange}\n\t\t\t\t\t/>\n\t\t\t<Button\n\t\t\t\tclassName={classes.button}\n\t\t\t\tvariant='contained'\n\t\t\t\ttype='submit'\n\t\t\t\t>\n\t\t\t\tSubmit\n\t\t\t</Button>\n\t\t\t\t</form>\n\t\t)\n\t}\n}\n\nexport default withStyles(styles)(AddBookmark);",
+			"handleChipDelete",
+			"existingTags",
+			"handle",
+			"handleFilterInputChange",
+			"handleInputChange",
+			"handleModalInputChange",
+			"handle",
+			"bookmarks",
+			"handleModalInputChange",
+			"handleModalClose",
+			"handleModalInputChange",
+			"JSON",
+			"props",
+			"bookmark",
+			"bookmarks",
+			"existingTags",
+			"handleEdit",
+			"handlEdit",
+			"handleDelete",
+			"handleEdit",
+			"handleDelete",
+			"handleDeleteClick",
+			"handleSubmit",
+			"handleDeleteClick",
+			"deleteBookmark",
+			"DeleteIcon",
+			"h3",
+			"CardActionArea",
+			"a"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"this.props.tagsInputValue",
+			"tags",
+			"handleInuptChange",
+			"",
+			"\n",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 383.0
+	},
+	"output.find_results":
+	{
+		"height": 470.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "bookmark-manager.sublime-project",
+	"replace":
+	{
+		"height": 73.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 272.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 3
+	}
+}
