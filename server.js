@@ -19,6 +19,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/bookmarks', bookmark);
 app.use('/tags', tag);
