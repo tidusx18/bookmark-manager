@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
+
 app.use('/bookmarks', bookmark);
 app.use('/tags', tag);
 
