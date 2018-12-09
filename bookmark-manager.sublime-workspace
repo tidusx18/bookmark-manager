@@ -181,10 +181,19 @@
 			}
 		},
 		{
+			"file": "server.js",
+			"settings":
+			{
+				"buffer_size": 950,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 634,
+				"buffer_size": 775,
 				"line_ending": "Unix"
 			}
 		}
@@ -310,13 +319,13 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/public",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src"
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/Client"
 	],
 	"file_history":
 	[
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/package.json",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/.gitignore",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/server.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/.gitignore",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/bookmark/list/index.jsx",
@@ -442,9 +451,7 @@
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/djibouti/djibouti.html",
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/egypt/egypt.html",
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/equatorial_guinea/equatorial_guinea.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/eritrea/eritrea.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/ethiopia/ethiopia.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/gabon/gabon.html"
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/eritrea/eritrea.html"
 	],
 	"find":
 	{
@@ -620,7 +627,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -636,8 +643,8 @@
 						"selection":
 						[
 							[
-								1459,
-								1459
+								702,
+								702
 							]
 						],
 						"settings":
@@ -651,7 +658,35 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 950,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								788,
+								788
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -661,20 +696,20 @@
 			"sheets":
 			[
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "package.json",
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 634,
+						"buffer_size": 775,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								634,
-								634
+								698,
+								698
 							]
 						],
 						"settings":
@@ -687,7 +722,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -777,7 +812,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
