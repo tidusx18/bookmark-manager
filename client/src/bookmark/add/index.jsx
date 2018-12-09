@@ -191,7 +191,7 @@ class AddBookmark extends React.Component {
 						placeholder: 'Bookmark Title',
             value: this.state.title,
           }}
-          onChange={this.handleInuptChange}
+          onChange={this.handleInputChange}
         />
         <Input
           name='url'
@@ -200,7 +200,7 @@ class AddBookmark extends React.Component {
             placeholder: 'URL',
 						value: this.state.url,
 					}}
-					onChange={this.handleInuptChange}
+					onChange={this.handleInputChange}
 				/>
 				<Button
 					className={classes.button}
