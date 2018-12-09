@@ -60,8 +60,8 @@ class AddBookmark extends React.Component {
 
   componentDidMount() {
     Promise.all([
-      fetch('/tags').then( res => res.json() ),
-      fetch('/bookmarks').then( res => res.json() )
+      fetch('/api/tags').then( res => res.json() ),
+      fetch('/api/bookmarks').then( res => res.json() )
     ]).then( (res) => {
       console.log('promise land', res)
       this.setState({ existingTags: res[0], bookmarks: res[1] })
@@ -116,7 +116,7 @@ class AddBookmark extends React.Component {
       return;
     }
 
-    fetch(`/bookmarks/create`, {
+    fetch(`/api/bookmarks/create`, {
     	method: 'POST',
     	headers: {
     		'Content-Type': 'application/json'

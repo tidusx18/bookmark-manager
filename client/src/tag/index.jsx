@@ -39,7 +39,7 @@ class ViewTags extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/tags')
+    fetch('/api/tags')
       .then( (res) => res.json() )
       .then( (res) => {
         this.setState({tags: res})
@@ -53,7 +53,7 @@ class ViewTags extends React.Component {
 
   handleEdit(id) {
     console.log('TODO: handleEdit()')
-    // fetch(`/tags/${id}/update`, {
+    // fetch(`/api/tags/${id}/update`, {
     //   method: 'PUT'
     // })
     //   .then( res => res.json() )
@@ -65,7 +65,7 @@ class ViewTags extends React.Component {
   }
 
   handleDelete(id) {
-    fetch(`/tags/${id}/delete`, {
+    fetch(`/api/tags/${id}/delete`, {
       method: 'DELETE'
     })
       .then( res => res.json() )
@@ -89,7 +89,7 @@ class ViewTags extends React.Component {
       return;
     }
 
-    fetch(`/tags/create`, {
+    fetch(`/api/tags/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

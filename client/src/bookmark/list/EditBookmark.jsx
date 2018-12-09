@@ -52,7 +52,7 @@ class AddBookmark extends React.Component {
   }
 
   componentDidMount() {
-  	fetch('/tags')
+  	fetch('/api/tags')
   		.then( res => res.json() )
   		.then( res => {
   			this.setState({

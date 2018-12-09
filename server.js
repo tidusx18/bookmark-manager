@@ -24,8 +24,8 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('*', (req, res) => res.sendFile(path.resolve('client/build', 'index.html')));
 
-app.use('/bookmarks', bookmark);
-app.use('/tags', tag);
+app.use('/api/bookmarks', bookmark);
+app.use('/api/tags', tag);
 
 
 app.listen(port, () => console.log(`\n\r\n\rExample app listening on port ${port}!`));

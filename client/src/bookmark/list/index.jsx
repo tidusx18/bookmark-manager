@@ -45,8 +45,8 @@ class BookmarkManager extends React.Component {
 
   componentDidMount() {
     Promise.all([
-      fetch('/tags').then( res => res.json() ),
-      fetch('/bookmarks').then( res => res.json() )
+      fetch('/api/tags').then( res => res.json() ),
+      fetch('/api/bookmarks').then( res => res.json() )
     ]).then( (res) => {
       console.log('promise land', res)
       this.setState({ tags: res[0], bookmarks: res[1] })
@@ -59,7 +59,7 @@ class BookmarkManager extends React.Component {
   }
 
   handleUpdate(props) {
-    fetch(`/bookmarks/${props.id}/update`, {
+    fetch(`/api/bookmarks/${props.id}/update`, {
       method: 'PUT',
       headers: {
       'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ class BookmarkManager extends React.Component {
   }
 
   handleDelete(id) {
-    fetch(`/bookmarks/${id}/delete`, {
+    fetch(`/api/bookmarks/${id}/delete`, {
       method: 'DELETE'
     })
       .then( res => res.json() )
