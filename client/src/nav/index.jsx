@@ -33,8 +33,6 @@ class Nav extends React.Component {
           <Toolbar>
             <Button className={classes.button} color='default' href="/">Bookmarks</Button>
             <Button className={classes.button} color='default' href="/tags">Tags</Button>
-            {'-'}
-            <Button className={classes.button} color='default' href="/bookmarks">Add Bookmark</Button>
             <div className={classes.grow} />
           </Toolbar>
         </AppBar>
@@ -42,7 +40,6 @@ class Nav extends React.Component {
 
           <Route exact path="/" component={Bookmarks} />
           <Route path="/tags" component={Tags} />
-          <Route path="/bookmarks" component={AddBookmark} />
         </div>
       </Router>
     )

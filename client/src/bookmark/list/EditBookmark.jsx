@@ -56,9 +56,9 @@ class AddBookmark extends React.Component {
   		.then( res => res.json() )
   		.then( res => {
   			this.setState({
-	        	tags: res.filter( tag => !this.props.tags.reduce( (result, curr) => {
+	        	tags: this.props.tags ? res.filter( tag => !this.props.tags.reduce( (result, curr) => {
 	        		return result + curr._id;
-	        	}, res[0]._id).includes(tag._id) ),
+	        	}, res[0]._id).includes(tag._id) ) : [],
 	        });
   		});
   }
@@ -141,7 +141,7 @@ class AddBookmark extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handleUpdate(this.props);
+    this.props.handleSubmit(this.props);
   }
 
 

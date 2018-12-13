@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
 import Bookmark from './Bookmark.jsx';
@@ -8,6 +9,9 @@ import Filter from '../../form/Filter.jsx';
 import EditBookmark from './EditBookmark.jsx';
 
 const styles = theme => ({
+  button: {
+    marginTop: '15px',
+  },
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -35,10 +39,11 @@ class BookmarkManager extends React.Component {
     };
 
     this.handleFilterInputChange = this.handleFilterInputChange.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleAddBookmarkClick = this.handleAddBookmarkClick.bind(this);
     this.setModalState = this.setModalState.bind(this);
   }
 
@@ -58,9 +63,20 @@ class BookmarkManager extends React.Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-  handleUpdate(props) {
-    fetch(`/api/bookmarks/${props.id}/update`, {
-      method: 'PUT',
+  handleSubmit(props) {
+    let config = {};
+
+    if(!props.id) {
+      config.endpoint = 'create'
+      config.method = 'POST'
+    }
+    else {
+      config.endpoint = `${props.id}/update`
+      config.method = 'PUT'
+    }
+
+    fetch(`/api/bookmarks/${config.endpoint}`, {
+      method: config.method,
       headers: {
       'Content-Type': 'application/json'
       },
@@ -72,21 +88,25 @@ class BookmarkManager extends React.Component {
     })
       .then( res => res.json() )
       .then( res => {
-        let bookmarks = this.state.bookmarks.map( bookmark => {
-            if(bookmark._id !== res._id) { return bookmark; }
+        // let bookmarks = this.state.bookmarks.map( bookmark => {
+        //     if(bookmark._id !== res._id) { return bookmark; }
 
-            return {
-              _id: props.id,
-              tags: props.tags,
-              title: props.title,
-              url: props.href,
-            }
-          });
+        //     return {
+        //       _id: props.id,
+        //       tags: props.tags,
+        //       title: props.title,
+        //       url: props.href,
+        //     }
+        //   });
 
-        this.setState({
-          modalOpen: false,
-          bookmarks: bookmarks,
-        });
+        // this.setState({
+        //   modalOpen: false,
+        //   bookmarks: bookmarks,
+        // });
+
+        fetch('api/bookmarks')
+        .then( res => res.json() )
+        .then( res => this.setState({ modalOpen: false, bookmarks: res }) )
       });
 
   }
@@ -128,6 +148,20 @@ class BookmarkManager extends React.Component {
     });
 }
 
+  handleAddBookmarkClick() {
+
+    this.setState({
+      modalOpen: true,
+      modalProps: {
+        id: '',
+        title: '',
+        url: '',
+        tags: [],
+        tagsInputValue: '',
+      }
+    });
+}
+
   render() {
     const { classes } = this.props;
 
@@ -138,6 +172,15 @@ class BookmarkManager extends React.Component {
       <Grid className="bookmarks" container spacing={24} justify="flex-start">
         <Grid item xs={12}>
           <Filter setFilterValue={this.handleFilterInputChange} />
+          <Button
+            className={classes.button}
+            size='medium'
+            variant='contained'
+            color='primary'
+            onClick={this.handleAddBookmarkClick}
+            >
+              Add Bookmark
+            </Button>
         </Grid>
          <Modal className={classes.modal} open={this.state.modalOpen} onClose={this.handleModalClose}>
           <Paper className={classes.paper}>
@@ -148,7 +191,7 @@ class BookmarkManager extends React.Component {
               tags={this.state.modalProps.tags}
               tagsInputValue={this.state.modalProps.tagsInputValue}
               setModalState={this.setModalState}
-              handleUpdate={this.handleUpdate}
+              handleSubmit={this.handleSubmit}
             />
           </Paper>
         </Modal>

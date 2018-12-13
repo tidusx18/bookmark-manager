@@ -52,6 +52,9 @@ class FavoriteBookmark extends React.Component {
                 <Typography noWrap gutterBottom component='h2' variant='title'>
                   {this.props.anchorText}
                 </Typography>
+                <Typography noWrap gutterBottom component='h3' variant='caption'>
+                  {this.props.href}
+                </Typography>
                 <div>
                 {
                   this.props.tags.map( (tag) => {
