@@ -153,9 +153,10 @@ class AddBookmark extends React.Component {
 	        <Input
 	          autoFocus
 	          name='tagsInputValue'
-	          inputRef={input => this.selectTagsInput = input}
 	          className={classes.input}
+	          inputRef={input => this.selectTagsInput = input}
 	          placeholder='Select tags'
+	          autoComplete='off'
 	          value={this.props.tagsInputValue}
 	          onChange={this.handleInputChange}
 	        />
