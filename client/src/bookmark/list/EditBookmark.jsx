@@ -71,7 +71,7 @@ class AddBookmark extends React.Component {
   	console.log(typeof selectedItem)
 
   	if(typeof selectedItem === 'string') {
-	    fetch('/tags/create', {
+	    fetch('api/tags/create', {
 	      method: 'POST',
 	      headers: {
 	      'Content-Type': 'application/json'
