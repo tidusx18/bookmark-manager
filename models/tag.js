@@ -16,4 +16,4 @@ tagSchema.post('findOneAndDelete', (doc) => {
 	)
 });
 
-module.exports = mongoose.model('Tag', tagSchema); 
+module.exports = mongoose.model('Tag', tagSchema);
