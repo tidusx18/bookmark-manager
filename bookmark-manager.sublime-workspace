@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"aler",
+				"alertOpen"
+			],
+			[
 				"handle",
 				"handleDelete\t(id: any) => any"
 			],
@@ -172,29 +176,33 @@
 	"buffers":
 	[
 		{
-			"file": "Client/src/nav/index.jsx",
+			"file": "client/src/bookmark/list/EditBookmark.jsx",
 			"settings":
 			{
-				"buffer_size": 1459,
+				"buffer_size": 5490,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "server.js",
+			"contents": "import React from 'react';\nimport { withStyles } from '@material-ui/core/styles';\nimport Dialog from '@material-ui/core/Dialog';\nimport Button from '@material-ui/core/Button';\nimport Input from '@material-ui/core/Input';\nimport Select from '@material-ui/core/Select';\nimport Chip from '@material-ui/core/Chip';\nimport MenuItem from '@material-ui/core/MenuItem';\nimport Paper from '@material-ui/core/Paper';\n\nconst styles = theme => ({\n  button: {\n    margin: theme.spacing.unit\n  },\n  input: {\n    'display': 'block',\n    'max-width': '200px',\n    'text-align': 'center',\n    'margin-top': '25px'\n  },\n  paper: {\n  \t'display': 'block',\n    'max-width': '200px',\n    'margin-top': '5px',\n    'max-height': '300px',\n    'overflow': 'hidden',\n  },\n  chips: {\n    display: 'flex',\n    flexWrap: 'wrap',\n    padding: '5px',\n    margin: '5px',\n  },\n  chip: {\n    margin: theme.spacing.unit / 4,\n  },\n});\n  \nclass AddBookmark extends React.Component {\n\n  constructor(props) {\n    super(props);\n\n    this.state = {\n      existingTags: [],\n      bookmarks: [],\n      tags: [],\n      title: '',\n      url: '',\n      alertOpen: false,\n      inputValue: ''\n    };\n\n    this.handleInputChange = this.handleInputChange.bind(this);\n    this.handleInputBlur = this.handleInputBlur.bind(this);\n    this.handleMenuItemClick = this.handleMenuItemClick.bind(this);\n    this.handleChipDelete = this.handleChipDelete.bind(this);\n    this.handleSubmit = this.handleSubmit.bind(this);\n  }\n\n  componentDidMount() {\n    Promise.all([\n      fetch('/api/tags').then( res => res.json() ),\n      fetch('/api/bookmarks').then( res => res.json() )\n    ]).then( (res) => {\n      console.log('promise land', res)\n      this.setState({ existingTags: res[0], bookmarks: res[1] })\n    })\n  }\n\n  handleInputChange(event) {\n    this.setState({ [event.target.name]: event.target.value });\n  }\n\n  // clear input on blur if not clicking on DOM elem\n  handleInputBlur(event) {\n    !event.relatedTarget ? this.setState( { [event.target.name]: '' } ) : null;\n  }\n\n  handleMenuItemClick(selectedItem) {\n    console.log('menu item', selectedItem)\n\n    this.setState({\n      tags: this.state.tags.concat(selectedItem),\n      existingTags: this.state.existingTags.filter( tag => tag.name !== selectedItem.name ),\n      inputValue: '',\n    })\n\n    this.selectTagsInput.focus();\n  }\n\n  handleChipDelete(chip) {\n    console.log('chip', chip)\n\n    this.setState({\n      existingTags: this.state.existingTags.concat(chip),\n      tags: this.state.tags.filter( tag => tag.name !== chip.name )\n    })\n  }\n\n  handleSubmit(event) {\n    event.preventDefault();\n\n    // avoid duplicates\n    let foundTitle = this.state.bookmarks.find( bookmark => {\n      return bookmark.title.match(new RegExp(`^${this.state.title}$`, 'i'));\n    });\n\n    let foundUrl = this.state.bookmarks.find( bookmark => {\n      return bookmark.url.match(new RegExp(`^${this.state.url}$`, 'i'));\n    });\n\n    if(foundTitle || foundUrl) {\n      this.setState({alertOpen: true});\n      return;\n    }\n\n    fetch(`/api/bookmarks/create`, {\n    \tmethod: 'POST',\n    \theaders: {\n    \t\t'Content-Type': 'application/json'\n    \t},\n    \tbody: JSON.stringify({\n        tags: this.state.tags,\n        title: this.state.title,\n        url: this.state.url\n      })\n    })\n    \t.then( res => res.text() )\n    \t.then( res => {\n        console.log(`Form submited: ${res}`);\n        this.setState({bookmarks: this.state.bookmarks.concat(res)});\n      });\n\n    this.setState({\n      title: '',\n      url: ''\n    });\n  }\n\n\trender() {\n\t\tconst { classes } = this.props;\n\n\t\treturn (\n\t\t\t<form onSubmit={this.handleSubmit}>\n        <Dialog open={this.state.alertOpen} onClose={() => this.setState({alertOpen: false})}>Bookmark already exists</Dialog>\n        <Input\n          autoFocus\n          inputRef={input => this.selectTagsInput = input}\n          placeholder='Select tags'\n          name='inputValue'\n          value={this.state.inputValue}\n          onChange={this.handleInputChange}\n          onBlur={this.handleInputBlur}\n        />\n\n        {\n          this.state.inputValue ?\n          <Paper className={classes.paper}>\n            {\n              this.state.existingTags\n                .filter(item => !this.state.inputValue || item.name.toLowerCase().includes(this.state.inputValue.toLowerCase()))\n                .map((item, index) => (\n                  <MenuItem\n                    key={item._id}\n                    onClick={ event => this.handleMenuItemClick(item) }\n                  >\n                    {item.name}\n                  </MenuItem>\n                ))\n              }\n          </Paper> : null\n        }\n        <div>\n          {\n            this.state.tags.length > 0 ? this.state.tags.map( tag => {\n            return <Chip\n                      className={classes.chip}\n                      key={tag._id}\n                      label={tag.name}\n                      onDelete={ event => this.handleChipDelete(tag) }\n                    />\n            }) : null\n          }\n        </div>\n        <Input\n          name='title'\n          className={classes.input}\n          inputProps={{\n\t\t\t\t\t\tplaceholder: 'Bookmark Title',\n            value: this.state.title,\n          }}\n          onChange={this.handleInputChange}\n        />\n        <Input\n          name='url'\n          className={classes.input}\n          inputProps={{\n            placeholder: 'URL',\n\t\t\t\t\t\tvalue: this.state.url,\n\t\t\t\t\t}}\n\t\t\t\t\tonChange={this.handleInputChange}\n\t\t\t\t/>\n\t\t\t\t<Button\n\t\t\t\t\tclassName={classes.button}\n\t\t\t\t\tvariant='contained'\n\t\t\t\t\ttype='submit'\n\t\t\t\t\t>\n\t\t\t\t\tSubmit\n\t\t\t\t</Button>\n\t\t\t</form>\n\t\t)\n\t}\n}\n\nexport default withStyles(styles)(AddBookmark);",
+			"file": "client/src/bookmark/add/index.jsx",
+			"file_size": 5868,
+			"file_write_time": 131894604520000000,
 			"settings":
 			{
-				"buffer_size": 1064,
+				"buffer_size": 5655,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "package.json",
+			"file": "client/src/bookmark/list/index.jsx",
 			"settings":
 			{
-				"buffer_size": 821,
-				"line_ending": "Unix"
+				"buffer_size": 6445,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -327,20 +335,23 @@
 	],
 	"file_history":
 	[
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark/list/Bookmark.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/package.json",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark/list/EditBookmark.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/nav/index.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/nav/index.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/server.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/AutoHotKey/Daily Helpers/Doc Windows/DockWin.ahk",
 		"/C/Users/victorid/Downloads/sample.bash",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/CreatorPro Userscripts/ReplaceDatesCreatorPro.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/Canvas Quick Scripts/BatchEditModuleTitles.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/courses.json",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/package.json",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/server.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/.gitignore",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/bookmark/list/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/public/index.html",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/nav/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/index.css",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/index.js",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/nav/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/utility/utilities.jsx",
@@ -386,7 +397,6 @@
 		"/C/Users/victorid/Downloads/hosts",
 		"/C/Users/victorid/OneDrive - Florida International University/Temp/hosts",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/models/category.js",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/package.json",
 		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/Babel/Babel.sublime-settings",
 		"/C/Users/victorid/AppData/Roaming/Sublime Text 3/Packages/ESLint/ESLint.sublime-settings",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes/getCategory.js",
@@ -452,9 +462,7 @@
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/comoros/comoros.html",
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/cote_dIvoire/cote_dIvoire.html",
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/democratic_republic_congo/democratic_republic_congo.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/djibouti/djibouti.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/egypt/egypt.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/equatorial_guinea/equatorial_guinea.html"
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/djibouti/djibouti.html"
 	],
 	"find":
 	{
@@ -479,6 +487,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Dialog",
+			"handleUpdate",
+			"handleSubmit",
+			"handleEditClick",
+			"' ",
+			",",
+			"Grid",
 			"mongoose",
 			"index.js",
 			"Bookmarks",
@@ -599,14 +614,7 @@
 			"handlEdit",
 			"handleDelete",
 			"handleEdit",
-			"handleDelete",
-			"handleDeleteClick",
-			"handleSubmit",
-			"handleDeleteClick",
-			"deleteBookmark",
-			"DeleteIcon",
-			"h3",
-			"CardActionArea"
+			"handleDelete"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -635,56 +643,55 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Client/src/nav/index.jsx",
+					"file": "client/src/bookmark/list/EditBookmark.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1459,
+						"buffer_size": 5490,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								666,
-								666
+								3655,
+								3655
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JSX/JSX.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
 							"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "server.js",
+					"file": "client/src/bookmark/add/index.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1064,
+						"buffer_size": 5655,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1064,
-								1064
+								818,
+								818
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?"
+							"syntax": "Packages/JSX/JSX.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -701,32 +708,33 @@
 			[
 				{
 					"buffer": 2,
-					"file": "package.json",
+					"file": "client/src/bookmark/list/index.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 821,
+						"buffer_size": 6445,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2751,
+								2751
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"syntax": "Packages/JSX/JSX.sublime-syntax",
 							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": true,
+							"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

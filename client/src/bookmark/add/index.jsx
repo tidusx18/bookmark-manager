@@ -102,7 +102,6 @@ class AddBookmark extends React.Component {
     event.preventDefault();
 
     // avoid duplicates
-    // pull out to its own function
     let foundTitle = this.state.bookmarks.find( bookmark => {
       return bookmark.title.match(new RegExp(`^${this.state.title}$`, 'i'));
     });

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
+import Dialog from '@material-ui/core/Dialog';
 import Bookmark from './Bookmark.jsx';
 import Filter from '../../form/Filter.jsx';
 import EditBookmark from './EditBookmark.jsx';
@@ -34,6 +35,7 @@ class BookmarkManager extends React.Component {
       tags: [],
       bookmarks: [],
       filterValue: '',
+      alertOpen: false,
       modalOpen: false,
       modalProps: {},
     };
@@ -64,6 +66,22 @@ class BookmarkManager extends React.Component {
   }
 
   handleSubmit(props) {
+    // avoid duplicates
+    let foundTitle = this.state.bookmarks.find( bookmark => {
+      return bookmark.title.match(new RegExp(`^${this.state.title}$`, 'i'));
+    });
+
+    let foundUrl = this.state.bookmarks.find( bookmark => {
+      return bookmark.url.match(new RegExp(`^${this.state.url}$`, 'i'));
+    });
+
+    // foundTitle || foundUrl ? this.setState({ alertOpen: true }) : null;
+
+    if(foundTitle || foundUrl) {
+      this.setState({ alertOpen: true });
+      return;
+    }
+
     let config = {};
 
     if(!props.id) {
@@ -88,22 +106,6 @@ class BookmarkManager extends React.Component {
     })
       .then( res => res.json() )
       .then( res => {
-        // let bookmarks = this.state.bookmarks.map( bookmark => {
-        //     if(bookmark._id !== res._id) { return bookmark; }
-
-        //     return {
-        //       _id: props.id,
-        //       tags: props.tags,
-        //       title: props.title,
-        //       url: props.href,
-        //     }
-        //   });
-
-        // this.setState({
-        //   modalOpen: false,
-        //   bookmarks: bookmarks,
-        // });
-
         fetch('api/bookmarks')
         .then( res => res.json() )
         .then( res => this.setState({ modalOpen: false, bookmarks: res }) )
@@ -195,10 +197,18 @@ class BookmarkManager extends React.Component {
             />
           </Paper>
         </Modal>
+        <Dialog
+          open={this.state.alertOpen}
+          onClose={() => this.setState({alertOpen: false})}
+        >
+          <Paper className={classes.paper}>
+            Bookmark already exists
+          </Paper>
+        </Dialog>
         {
           this.state.bookmarks.map( (bookmark, index) => {
 
-            // render only items with bookmark/tag names that match input (filter)
+            // only render items with bookmark/tag names that match input (filter)
             let bookmarkMatch = bookmark.title.toLowerCase().includes(this.state.filterValue.toLowerCase());
             let tagMatch = bookmark.tags.find( tag => tag.name.toLowerCase().includes(this.state.filterValue.toLowerCase()));
 
