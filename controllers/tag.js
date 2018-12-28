@@ -2,7 +2,7 @@ const tag = require('../models/tag.js');
 
 exports.tag_list = (req, res) => {
 
-	tag.find({ name: /.*/i }, (err, results) => {
+	tag.find({ name: /.*/i }, null, { collation: { locale: 'en' }, sort: { name: 1 } }, (err, results) => {
 	  	if(err) { res.send(err) }
 	  	res.send(results);
   	});

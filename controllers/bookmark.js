@@ -3,8 +3,9 @@ const tag = require('../models/tag.js');
 
 exports.bookmark_list = (req, res) => {
 
-	bookmark.find({ title: /.*/i }, (err, results) => {
+	bookmark.find({ title: /.*/i }, null, { collation: { locale: 'en' }, sort: { title: 1 } }, (err, results) => {
 	  	if(err) { res.send(err) }
+	  	console.log(results)
 	  	res.send(results);
   	});
 };

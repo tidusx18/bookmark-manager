@@ -132,13 +132,7 @@ class ViewTags extends React.Component {
       <Divider />
       <List>
         {
-          this.state.tags.sort( (last, curr) => {
-            last = last.name.toLowerCase();
-            curr = curr.name.toLowerCase();
-            if(last < curr) {  return -1; }
-            if(last > curr) {  return 1; }
-            return 0;
-          }).map( tag => {
+          this.state.tags.map( tag => {
             return (
               <ListItem
                 key={tag._id}

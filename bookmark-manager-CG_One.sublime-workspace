@@ -4,10 +4,6 @@
 		"selected_items":
 		[
 			[
-				"re",
-				"results\tany"
-			],
-			[
 				"res",
 				"results"
 			],
@@ -184,10 +180,19 @@
 	"buffers":
 	[
 		{
-			"file": "client/src/tag/index.jsx",
+			"file": "models/tag.js",
 			"settings":
 			{
-				"buffer_size": 3930,
+				"buffer_size": 551,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/src/bookmark/list/index.jsx",
+			"settings":
+			{
+				"buffer_size": 6445,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -322,22 +327,12 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/tag",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/models",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes"
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/models"
 	],
 	"file_history":
 	[
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/bookmark.js",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/tag.js",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark/list/EditBookmark.jsx",
-		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark/list/index.jsx",
-		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/client/package.json",
-		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/models/tag.js",
 		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/tag.js",
 		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/models/bookmark.js",
 		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/package.json",
@@ -346,6 +341,7 @@
 		"/C/Users/Trinode/OneDrive - Florida International University/Projects/AutoHotKey/Daily Helpers/HotkeyOpenPulseApp.ahk",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark/list/Bookmark.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/package.json",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark/list/EditBookmark.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/nav/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/nav/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/server.js",
@@ -372,9 +368,11 @@
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Tags.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Category.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Bookmark.js",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/tag.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes/tag.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Bookmarks.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/Nav.jsx",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/bookmark.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/AddBookmark.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/Canvas Quick Scripts/Canvas Delete All Question Banks.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/Client/src/FavoriteBookmark.jsx",
@@ -459,11 +457,14 @@
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/angola/angola.html",
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/benin/benin.html",
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/botswana/botswana.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/burkina_faso/burkina_faso.html"
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/burkina_faso/burkina_faso.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/burundi/burundi.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/cameroon/cameroon.html",
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/cape_verde/cape_verde.html"
 	],
 	"find":
 	{
-		"height": 41.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -484,9 +485,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"new ta",
-			"filterTags",
-			"new tag",
 			"item",
 			"req.params.id",
 			"tag",
@@ -611,7 +609,10 @@
 			"JSON",
 			"props",
 			"bookmark",
-			"bookmarks"
+			"bookmarks",
+			"existingTags",
+			"handleEdit",
+			"handlEdit"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -640,19 +641,53 @@
 			[
 				{
 					"buffer": 0,
-					"file": "client/src/tag/index.jsx",
+					"file": "models/tag.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3930,
+						"buffer_size": 551,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3459,
-								3459
+								551,
+								551
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "client/src/bookmark/list/index.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6445,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3099,
+								3099
 							]
 						],
 						"settings":
@@ -663,10 +698,10 @@
 							"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1298.0,
+						"translation.y": 881.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -689,11 +724,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":

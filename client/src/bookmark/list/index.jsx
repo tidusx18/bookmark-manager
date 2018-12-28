@@ -75,8 +75,6 @@ class BookmarkManager extends React.Component {
       return bookmark.url.match(new RegExp(`^${this.state.url}$`, 'i'));
     });
 
-    // foundTitle || foundUrl ? this.setState({ alertOpen: true }) : null;
-
     if(foundTitle || foundUrl) {
       this.setState({ alertOpen: true });
       return;

@@ -68,8 +68,6 @@ class AddBookmark extends React.Component {
   }
 
   handleTagsMenuItemClick(selectedItem) {
-  	console.log(typeof selectedItem)
-
   	if(typeof selectedItem === 'string') {
 	    fetch('api/tags/create', {
 	      method: 'POST',
@@ -103,8 +101,6 @@ class AddBookmark extends React.Component {
   	let filteredTags = this.state.tags.filter(item => {
 	    	return !input || item.name.toLowerCase().includes(input.toLowerCase())
 	    });
-
-  	console.log(input, filteredTags)
 
   	if(input && filteredTags.length > 0) {
   		const { classes } = this.props;
