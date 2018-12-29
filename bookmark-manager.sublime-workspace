@@ -184,10 +184,10 @@
 	"buffers":
 	[
 		{
-			"file": "client/src/tag/index.jsx",
+			"file": "server.js",
 			"settings":
 			{
-				"buffer_size": 3930,
+				"buffer_size": 1058,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -322,16 +322,12 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/tag",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/models",
-		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/routes"
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager"
 	],
 	"file_history":
 	[
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/.gitignore",
+		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/tag/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/bookmark.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/tag.js",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark/list/EditBookmark.jsx",
@@ -457,9 +453,7 @@
 		"/C/Users/victorid/Downloads/cordata/cordata0.txt",
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/algeria/algeria.html",
 		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/angola/angola.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/benin/benin.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/botswana/botswana.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/burkina_faso/burkina_faso.html"
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/benin/benin.html"
 	],
 	"find":
 	{
@@ -640,35 +634,37 @@
 			[
 				{
 					"buffer": 0,
-					"file": "client/src/tag/index.jsx",
+					"file": "server.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3930,
+						"buffer_size": 1058,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3459,
-								3459
+								374,
+								374
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JSX/JSX.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
-							"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?"
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1298.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -689,11 +685,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.444174757282,
 			1.0
 		],
 		"rows":
@@ -734,9 +737,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "",
+		"last_filter": "mana",
 		"selected_items":
 		[
+			[
+				"mana",
+				"C:\\Users\\Trinode\\OneDrive - Florida International University\\Projects\\React\\bookmark-manager\\Client\\bookmark-manager.sublime-workspace"
+			]
 		],
 		"width": 380.0
 	},

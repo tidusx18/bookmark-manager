@@ -1,3 +1,4 @@
+require('dotenv').config();
 let express = require('express');
 let mongoose = require('mongoose');
 let path = require('path');
@@ -9,7 +10,7 @@ let bookmark = require('./routes/bookmark.js');
 let tag = require('./routes/tag.js');
 
 // connect to DB
-let mongoDB = 'mongodb://tidusx18:Gotenks%40518@ds119853.mlab.com:19853/bookmark_manager';
+let mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;

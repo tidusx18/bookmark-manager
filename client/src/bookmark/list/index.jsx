@@ -165,9 +165,6 @@ class BookmarkManager extends React.Component {
   render() {
     const { classes } = this.props;
 
-    // wait for bookmarks to be assigned in state
-    if(this.state.bookmarks.length === 0) { return null; }
-
     return (
       <Grid className="bookmarks" container spacing={24} justify="flex-start">
         <Grid item xs={12}>
@@ -204,6 +201,11 @@ class BookmarkManager extends React.Component {
           </Paper>
         </Dialog>
         {
+          // wait for bookmarks to be assigned in state
+          this.state.bookmarks.length === 0 ? null
+
+          :
+
           this.state.bookmarks.map( (bookmark, index) => {
 
             // only render items with bookmark/tag names that match input (filter)
