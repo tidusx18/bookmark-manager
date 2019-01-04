@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"mongo",
+				"MONGODB_URI"
+			],
+			[
+				"mong",
+				"MONGODB_URI"
+			],
+			[
+				"M",
+				"MONGODB_URI"
+			],
+			[
 				"re",
 				"results\tany"
 			],
@@ -184,10 +196,10 @@
 	"buffers":
 	[
 		{
-			"file": "server.js",
+			"file": "client/src/bookmark/list/index.jsx",
 			"settings":
 			{
-				"buffer_size": 1058,
+				"buffer_size": 6380,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -322,10 +334,16 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager"
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/client",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/bookmark/list"
 	],
 	"file_history":
 	[
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/.env",
+		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/server.js",
 		"/C/Users/Trinode/OneDrive - Florida International University/Projects/React/bookmark-manager/.gitignore",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/client/src/tag/index.jsx",
 		"/C/Users/victorid/OneDrive - Florida International University/Projects/React/bookmark-manager/controllers/bookmark.js",
@@ -451,13 +469,11 @@
 		"/C/Users/victorid/AppData/Roaming/Microsoft/Templates/Untitled.oft",
 		"/Z/Private/victorid/Documents/Blackboard/Course/Export and Archive/imsmanifest.xml",
 		"/C/Users/victorid/Downloads/cordata/cordata0.txt",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/algeria/algeria.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/angola/angola.html",
-		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/benin/benin.html"
+		"/C/Users/victorid/Downloads/WorldExplorer-dev-6a17d2589c7e412d3c647f2d5f54e6d2c1bed168/continents/africa/algeria/algeria.html"
 	],
 	"find":
 	{
-		"height": 41.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -478,6 +494,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" ||",
 			"new ta",
 			"filterTags",
 			"new tag",
@@ -604,8 +621,7 @@
 			"handleModalInputChange",
 			"JSON",
 			"props",
-			"bookmark",
-			"bookmarks"
+			"bookmark"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -634,24 +650,26 @@
 			[
 				{
 					"buffer": 0,
-					"file": "server.js",
+					"file": "client/src/bookmark/list/index.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1058,
+						"buffer_size": 6380,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								374,
-								374
+								5321,
+								5321
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/JSX/JSX.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -696,7 +714,7 @@
 		"cols":
 		[
 			0.0,
-			0.444174757282,
+			0.480582524272,
 			1.0
 		],
 		"rows":
