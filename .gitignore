@@ -1,3 +1,4 @@
 node_modules
 .env
-.sublime
+.sublime-project
+.sublime-workspace
