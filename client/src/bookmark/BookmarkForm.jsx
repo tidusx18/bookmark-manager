@@ -98,17 +98,21 @@ class BookmarkForm extends React.Component {
   filterTags() {
 
   	let input = this.props.tagsInputValue;
-  	let filteredTags = this.state.tags.filter(item => {
-	    	return !input || item.name.toLowerCase().includes(input.toLowerCase())
-	    });
 
-  	if(input && filteredTags.length > 0) {
+  	if(!input) { return null; }
+
+  	// array of tags matching input value
+  	let tagsMatchingInput = this.state.tags.filter(item => item.name.toLowerCase().includes(input.toLowerCase()) );
+  	// bool indicating if input matches a tag assignment to the bookmark
+  	let inputMatchesUsedTag = this.state.tags.find( item => item.name.toLowerCase().includes(input.toLowerCase()) );
+
+  	if(input && tagsMatchingInput.length > 0) {
   		const { classes } = this.props;
 
 		return (
 			<Paper className={classes.paper}>
 			{
-			    filteredTags.map((item, index) => (
+			    tagsMatchingInput.map((item, index) => (
 			      <MenuItem
 			        key={item._id}
 			        tabIndex={0}
@@ -122,7 +126,7 @@ class BookmarkForm extends React.Component {
 		)
   	}
 
-  	if(input && filteredTags.length === 0) {
+  	if(tagsMatchingInput.length === 0 && inputMatchesUsedTag === false) {
   		const { classes } = this.props;
 
 		return (
@@ -157,6 +161,7 @@ class BookmarkForm extends React.Component {
 	          onChange={this.handleInputChange}
 	        />
 	        {
+	        	// tag select options
 	        	this.filterTags()
 	        }
 	        <div>
