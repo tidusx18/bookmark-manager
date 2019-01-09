@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
 import  Tags from '../tag/TagList.jsx';
-import  Bookmarks from '../bookmark/BookmarkList.jsx';
+import  Bookmarks from '../bookmark/Bookmarks.jsx';
 
 const styles = theme => ({
   button: {

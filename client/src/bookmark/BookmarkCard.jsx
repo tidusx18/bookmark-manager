@@ -45,7 +45,7 @@ class FavoriteBookmark extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Grid className="FavoriteBookmark" item lg={3} sm={6} xs={12}>
+      <Grid className="FavoriteBookmark" item lg={12} sm={6} xs={12}>
           <Card className={classes.card} raised={true} elevation={2}>
             <CardActionArea href={this.props.href} target='_blank'>
               <CardContent>

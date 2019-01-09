@@ -64,7 +64,7 @@ class BookmarkForm extends React.Component {
   }
 
   handleInputChange(event) {
-  	this.props.setModalState(event.target.name, event.target.value);
+  	this.props.setBookmarkState(event.target.name, event.target.value);
   }
 
   handleTagsMenuItemClick(selectedItem) {
@@ -80,17 +80,17 @@ class BookmarkForm extends React.Component {
 	    })
 	      .then( res => res.json() )
 	      .then( res => {
-			this.props.setModalState('tags', this.props.tags.concat(res));
+			this.props.setBookmarkState('tags', this.props.tags.concat(res));
 			this.setState({ 'tags': this.state.tags.filter( tag => tag._id !== res._id ) })
-			this.props.setModalState('tagsInputValue', '');
+			this.props.setBookmarkState('tagsInputValue', '');
 			this.selectTagsInput.focus();
 	      });
   	}
 
   	if(typeof selectedItem === 'object') {
-	    this.props.setModalState('tags', this.props.tags.concat(selectedItem));
+	    this.props.setBookmarkState('tags', this.props.tags.concat(selectedItem));
 	    this.setState({ 'tags': this.state.tags.filter( tag => tag._id !== selectedItem._id ) })
-	    this.props.setModalState('tagsInputValue', '');
+	    this.props.setBookmarkState('tagsInputValue', '');
 	    this.selectTagsInput.focus();
   	}
   }
@@ -101,7 +101,7 @@ class BookmarkForm extends React.Component {
 
   	if(!input) { return null; }
 
-  	// array of tags matching input value
+  	// array of tags to display that match input value
   	let tagsMatchingInput = this.state.tags.filter(item => item.name.toLowerCase().includes(input.toLowerCase()) );
   	// bool indicating if input matches a tag assignment to the bookmark
   	let inputMatchesUsedTag = this.state.tags.find( item => item.name.toLowerCase().includes(input.toLowerCase()) );
@@ -173,7 +173,7 @@ class BookmarkForm extends React.Component {
 	                      key={tag._id}
 	                      label={tag.name}
 	                      onDelete={ () => {
-	                        this.props.setModalState('tags', this.props.tags.filter( item => item._id !== tag._id ));
+	                        this.props.setBookmarkState('tags', this.props.tags.filter( item => item._id !== tag._id ));
 	                        this.setState({ tags: this.state.tags.concat(tag) });
 	                      }}
 	                   />

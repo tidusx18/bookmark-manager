@@ -5,7 +5,11 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
 import Dialog from '@material-ui/core/Dialog';
-import Bookmark from './Bookmark.jsx';
+import List from '@material-ui/core/List';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import BookmarkCard from './BookmarkCard.jsx';
+import BookmarkListItem from './BookmarkListItem.jsx';
 import Filter from '../form/Filter.jsx';
 import BookmarkForm from './BookmarkForm.jsx';
 
@@ -37,16 +41,19 @@ class BookmarkManager extends React.Component {
       filterValue: '',
       alertOpen: false,
       modalOpen: false,
-      modalProps: {},
+      vertMenuAnchorEl: null,
+      menuOpen: false,
+      bookmarkProps: {},
     };
 
     this.handleFilterInputChange = this.handleFilterInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
-    this.handleEditClick = this.handleEditClick.bind(this);
+    // this.handleEdit = this.handleEdit.bind(this);
+    this.handleVertMenuClick = this.handleVertMenuClick.bind(this);
     this.handleAddBookmarkClick = this.handleAddBookmarkClick.bind(this);
-    this.setModalState = this.setModalState.bind(this);
+    this.setBookmarkState = this.setBookmarkState.bind(this);
   }
 
 
@@ -111,8 +118,8 @@ class BookmarkManager extends React.Component {
 
   }
 
-  handleDelete(id) {
-    fetch(`/api/bookmarks/${id}/delete`, {
+  handleDelete() {
+    fetch(`/api/bookmarks/${this.state.bookmarkProps.id}/delete`, {
       method: 'DELETE'
     })
       .then( res => res.json() )
@@ -127,18 +134,18 @@ class BookmarkManager extends React.Component {
     this.setState({ modalOpen: false });
   }
 
-  setModalState(name, value) {
-    let props = this.state.modalProps;
+  setBookmarkState(name, value) {
+    let props = this.state.bookmarkProps;
     props[name] = value;
 
-    this.setState({ modalProps: props });
+    this.setState({ bookmarkProps: props });
   }
 
-  handleEditClick(props) {
-
+  handleVertMenuClick(anchorEl, props) {
     this.setState({
-      modalOpen: true,
-      modalProps: {
+      menuOpen: true,
+      vertMenuAnchorEl: anchorEl,
+      bookmarkProps: {
         id: props.id,
         title: props.anchorText,
         url: props.href,
@@ -146,13 +153,26 @@ class BookmarkManager extends React.Component {
         tagsInputValue: props.tagsInputValue,
       }
     });
-}
+  }
+
+//   handleEdit(props) {
+
+//     this.setState({
+//       bookmarkProps: {
+//         id: props.id,
+//         title: props.anchorText,
+//         url: props.href,
+//         tags: props.tags,
+//         tagsInputValue: props.tagsInputValue,
+//       }
+//     });
+// }
 
   handleAddBookmarkClick() {
 
     this.setState({
       modalOpen: true,
-      modalProps: {
+      bookmarkProps: {
         id: '',
         title: '',
         url: '',
@@ -182,12 +202,12 @@ class BookmarkManager extends React.Component {
          <Modal className={classes.modal} open={this.state.modalOpen} onClose={this.handleModalClose}>
           <Paper className={classes.paper}>
             <BookmarkForm
-              id={this.state.modalProps.id}
-              href={this.state.modalProps.url}
-              title={this.state.modalProps.title}
-              tags={this.state.modalProps.tags}
-              tagsInputValue={this.state.modalProps.tagsInputValue}
-              setModalState={this.setModalState}
+              id={this.state.bookmarkProps.id}
+              href={this.state.bookmarkProps.url}
+              title={this.state.bookmarkProps.title}
+              tags={this.state.bookmarkProps.tags}
+              tagsInputValue={this.state.bookmarkProps.tagsInputValue}
+              setBookmarkState={this.setBookmarkState}
               handleSubmit={this.handleSubmit}
             />
           </Paper>
@@ -200,6 +220,19 @@ class BookmarkManager extends React.Component {
             Bookmark already exists
           </Paper>
         </Dialog>
+        <Menu
+          open={this.state.menuOpen}
+          onClick={ () => this.setState({ menuOpen: false }) }
+          anchorEl={this.state.vertMenuAnchorEl}
+          PaperProps={{ style: { width: 150 } }}
+        >
+          <MenuItem onClick={ () => { this.setState({ modalOpen: true }) } }>
+            Edit
+          </MenuItem>
+          <MenuItem onClick={ () => { this.handleDelete() } }>
+            Delete
+          </MenuItem>
+        </Menu>
         {
           // wait for bookmarks to be assigned in state
           this.state.bookmarks.length === 0 ? null
@@ -214,15 +247,20 @@ class BookmarkManager extends React.Component {
 
             if(!bookmarkMatch && !tagMatch) { return null; }
 
-            return <Bookmark
-                      key={bookmark._id}
-                      id={bookmark._id}
-                      href={bookmark.url}
-                      anchorText={bookmark.title}
-                      tags={bookmark.tags}
-                      delete={this.handleDelete}
-                      edit={this.handleEditClick}
-                    />
+            return (
+              <BookmarkListItem
+                key={bookmark._id}
+                id={bookmark._id}
+                href={bookmark.url}
+                anchorText={bookmark.title}
+                tags={bookmark.tags}
+                delete={this.handleDelete}
+                edit={this.handleEdit}
+                vertMenu={this.handleVertMenuClick}
+                anchorEl={this.state.vertMenuAnchorEl}
+                menuOpen={this.state.menuOpen}
+              />
+            )
           })
         }
       </Grid>
