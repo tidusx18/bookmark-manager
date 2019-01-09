@@ -20,7 +20,7 @@ const styles = {
   },
   li: {
     '&:hover': {
-      'background-color': '#797979'
+      'background-color': '#f0f0f0'
     }
   }
 };
@@ -40,7 +40,7 @@ class FavoriteBookmark extends React.Component {
     const { classes } = this.props;
 
     return (
-          <ListItem dense divider>
+          <ListItem dense divider className={classes.li}>
               <IconButton
                 disableRipple
                 onClick={ (event) => { this.handleVertMenuClick(event.target, this.props) }}>
