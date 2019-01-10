@@ -204,6 +204,7 @@ class BookmarkForm extends React.Component {
 				className={classes.button}
 				variant='contained'
 				type='submit'
+				color='secondary'
 				>
 				Submit
 			</Button>

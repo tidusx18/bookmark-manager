@@ -119,6 +119,8 @@ class BookmarkManager extends React.Component {
   }
 
   handleDelete() {
+    if( !window.confirm('Delete this bookmark?') ) { return; }
+
     fetch(`/api/bookmarks/${this.state.bookmarkProps.id}/delete`, {
       method: 'DELETE'
     })
@@ -193,7 +195,7 @@ class BookmarkManager extends React.Component {
             className={classes.button}
             size='medium'
             variant='contained'
-            color='primary'
+            color='secondary'
             onClick={this.handleAddBookmarkClick}
             >
               Add Bookmark
