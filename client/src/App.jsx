@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/AddCircle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -17,8 +18,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Tags from '../tag/TagList.jsx';
-import Bookmarks from '../bookmark/Bookmarks.jsx';
+import Tags from './tag/TagList.jsx';
+import Bookmarks from './bookmark/Bookmarks.jsx';
+// import Modal from '@material-ui/core/Modal';
+import BookmarkForm from './bookmark/BookmarkForm.jsx';
 
 const drawerWidth = 240;
 
@@ -52,16 +55,76 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
+  addBookmarkButton: {
+    marginLeft: 10,
+  },
 });
 
 class Nav extends React.Component {
-  state = {
-    mobileOpen: false,
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      mobileOpen: false,
+      modalOpen: false,
+      tags: [],
+      bookmarks: [],
+      bookmarkProps: {
+        id: '',
+        title: '',
+        url: '',
+        tags: [],
+        tagsInputValue: '',
+      },
+    };
+  }
+
+  componentDidMount() {
+    Promise.all([
+      fetch('/api/tags').then( res => res.json() ),
+      fetch('/api/bookmarks').then( res => res.json() )
+    ]).then( (res) => this.setState({ tags: res[0], bookmarks: res[1] }) )
+    .catch( err => console.log('ERROR: ', err));
+  }
 
   handleDrawerToggle = () => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+    this.setState({ mobileOpen: !this.state.mobileOpen });
   };
+
+  handleAddBookmarkClick = () => {
+    this.setState({
+      modalOpen: true,
+      bookmarkProps: {
+        id: '',
+        title: '',
+        url: '',
+        tags: [],
+        tagsInputValue: '',
+      }
+    });
+  };
+
+  setFormState = (props) => {
+    this.setState({ bookmarkProps: props });
+  }
+
+  handleModalOpen = () => {
+    this.setState({ modalOpen: true });
+  }
+
+  handleModalClose = () => {
+    this.setState({ modalOpen: false });
+    this.refreshBookmarks();
+  }
+
+  refreshBookmarks = () => {
+    console.log('refresh bookmarks')
+    fetch('/api/bookmarks').then( res => res.json() )
+      .then( res => {
+        console.log(res)
+        this.setState({ bookmarks: res })} )
+      .catch( err => console.log('Error fetching bookmarks: ', err) );
+  }
 
   render() {
     const { classes, theme } = this.props;
@@ -104,6 +167,11 @@ class Nav extends React.Component {
             <Typography variant='title' color='inherit' noWrap>
               {document.location.pathname === '/' ? 'Bookmarks' : 'Tags'}
             </Typography>
+            <IconButton className ={classes.addBookmarkButton} disableRipple color='inherit' onClick={this.handleAddBookmarkClick}>
+              {
+                document.location.pathname === '/' ? <AddIcon /> : null
+              }
+            </IconButton>
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer}>
@@ -137,9 +205,23 @@ class Nav extends React.Component {
             </Drawer>
           </Hidden>
         </nav>
+        <BookmarkForm
+          tags={this.state.tags}
+          bookmarks={this.state.bookmarks}
+          modalOpen={this.state.modalOpen}
+          bookmarks={this.state.bookmarks}
+          bookmarkProps={this.state.bookmarkProps}
+          handleModalClose={this.handleModalClose}
+          setFormState={this.setFormState}
+        />
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Route exact path='/' component={Bookmarks} />
+          <Route
+            exact path='/'
+            render={() => {
+              return <Bookmarks tags={this.state.tags} bookmarks={this.state.bookmarks} refreshBookmarks={this.refreshBookmarks}/>
+            }}
+          />
           <Route path='/tags' component={Tags} />
         </main>
       </div>

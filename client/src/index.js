@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Nav from './nav/Nav.jsx';
+import App from './App.jsx';
 
 // ========================================
 
@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
 	<Router>
 		<MuiThemeProvider theme={theme}>
-	      <Nav />
+	      <App />
 	    </MuiThemeProvider>
   	</Router>,
   document.getElementById('root')

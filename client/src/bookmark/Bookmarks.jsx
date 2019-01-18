@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import Chip from '@material-ui/core/Chip';
 import Modal from '@material-ui/core/Modal';
 import Dialog from '@material-ui/core/Dialog';
 import List from '@material-ui/core/List';
@@ -29,6 +30,15 @@ const styles = theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
   },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    padding: '5px',
+    margin: '5px',
+  },
+  chip: {
+    margin: theme.spacing.unit / 4,
+  },
 });
 
 class BookmarkManager extends React.Component {
@@ -36,9 +46,8 @@ class BookmarkManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: [],
-      bookmarks: [],
-      filterValue: '',
+      filterInputValue: '',
+      filterTags: [],
       alertOpen: false,
       modalOpen: false,
       vertMenuAnchorEl: null,
@@ -46,79 +55,36 @@ class BookmarkManager extends React.Component {
       bookmarkProps: {},
     };
 
+    this.setFormState = this.setFormState.bind(this);
+    this.handleFilterTagsClick = this.handleFilterTagsClick.bind(this);
     this.handleFilterInputChange = this.handleFilterInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.clearFilterTags = this.clearFilterTags.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
-    // this.handleEdit = this.handleEdit.bind(this);
     this.handleVertMenuClick = this.handleVertMenuClick.bind(this);
-    this.handleAddBookmarkClick = this.handleAddBookmarkClick.bind(this);
-    this.setBookmarkState = this.setBookmarkState.bind(this);
+    this.handleVertMenuClose = this.handleVertMenuClose.bind(this);
+    // this.refreshBookmarks = this.refreshBookmarks.bind(this);
   }
 
-
-  componentDidMount() {
-    Promise.all([
-      fetch('/api/tags').then( res => res.json() ),
-      fetch('/api/bookmarks').then( res => res.json() )
-    ]).then( (res) => {
-      console.log('promise land', res)
-      this.setState({ tags: res[0], bookmarks: res[1] })
-    })
-    .catch( err => console.log('ERROR: ', err))
+  handleFilterInputChange(value) {
+    this.setState({ filterInputValue: value });
   }
 
-  handleFilterInputChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+  handleFilterTagsClick(tag) {
+    this.setState({ filterTags: this.state.filterTags.concat([tag]) });
   }
 
-  handleSubmit(props) {
-    // avoid duplicates
-    let foundTitle = this.state.bookmarks.find( bookmark => {
-      return bookmark.title.match(new RegExp(`^${this.state.title}$`, 'i'));
-    });
-
-    let foundUrl = this.state.bookmarks.find( bookmark => {
-      return bookmark.url.match(new RegExp(`^${this.state.url}$`, 'i'));
-    });
-
-    if(foundTitle || foundUrl) {
-      this.setState({ alertOpen: true });
-      return;
-    }
-
-    let config = {};
-
-    if(!props.id) {
-      config.endpoint = 'create'
-      config.method = 'POST'
-    }
-    else {
-      config.endpoint = `${props.id}/update`
-      config.method = 'PUT'
-    }
-
-    fetch(`/api/bookmarks/${config.endpoint}`, {
-      method: config.method,
-      headers: {
-      'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-            title: props.title,
-            url: props.href,
-            tags: props.tags,
-            })
-    })
-      .then( res => res.json() )
-      .then( res => {
-        fetch('api/bookmarks')
-        .then( res => res.json() )
-        .then( res => this.setState({ modalOpen: false, bookmarks: res }) )
-      });
-
+  clearFilterTags() {
+    this.setState({ filterTags: [] });
   }
 
-  handleDelete() {
+  handleEditClick() {
+    this.handleModalOpen();
+  }
+
+  handleDeleteClick() {
     if( !window.confirm('Delete this bookmark?') ) { return; }
 
     fetch(`/api/bookmarks/${this.state.bookmarkProps.id}/delete`, {
@@ -126,21 +92,24 @@ class BookmarkManager extends React.Component {
     })
       .then( res => res.json() )
       .then( res => {
-        this.setState({
-          bookmarks: this.state.bookmarks.filter( bookmark => bookmark._id !== res._id )
-        });
-      });
+        console.log('Bookmark Deleted: ', res)
+        this.handleVertMenuClose();
+        this.props.refreshBookmarks();
+      } );
+  }
+
+  setFormState(props) {
+    this.setState({ bookmarkProps: props });
+  }
+
+  handleModalOpen() {
+    this.setState({ modalOpen: true });
   }
 
   handleModalClose() {
     this.setState({ modalOpen: false });
-  }
-
-  setBookmarkState(name, value) {
-    let props = this.state.bookmarkProps;
-    props[name] = value;
-
-    this.setState({ bookmarkProps: props });
+    this.handleVertMenuClose();
+    this.props.refreshBookmarks();
   }
 
   handleVertMenuClick(anchorEl, props) {
@@ -157,32 +126,9 @@ class BookmarkManager extends React.Component {
     });
   }
 
-//   handleEdit(props) {
-
-//     this.setState({
-//       bookmarkProps: {
-//         id: props.id,
-//         title: props.anchorText,
-//         url: props.href,
-//         tags: props.tags,
-//         tagsInputValue: props.tagsInputValue,
-//       }
-//     });
-// }
-
-  handleAddBookmarkClick() {
-
-    this.setState({
-      modalOpen: true,
-      bookmarkProps: {
-        id: '',
-        title: '',
-        url: '',
-        tags: [],
-        tagsInputValue: '',
-      }
-    });
-}
+  handleVertMenuClose() {
+    this.setState({ menuOpen: false });
+  }
 
   render() {
     const { classes } = this.props;
@@ -190,30 +136,41 @@ class BookmarkManager extends React.Component {
     return (
       <Grid className="bookmarks" container spacing={24} justify="flex-start">
         <Grid item xs={12}>
-          <Filter setFilterValue={this.handleFilterInputChange} />
-          <Button
-            className={classes.button}
-            size='medium'
-            variant='contained'
-            color='secondary'
-            onClick={this.handleAddBookmarkClick}
-            >
-              Add Bookmark
-            </Button>
+          <Filter
+            allTags={this.props.tags}
+            filterTags={this.state.filterTags}
+            filterValue={this.state.filterInputValue}
+            setFilterValue={this.handleFilterInputChange}
+            setFilterTags={this.handleFilterTagsClick}
+            clearFilterTags={this.clearFilterTags}
+          />
+          <div className={classes.chips}>
+          {
+            this.state.filterTags ? this.state.filterTags.map( tag => {
+            return <Chip
+                      className={classes.chip}
+                      tabIndex={-1}
+                      key={tag._id}
+                      label={tag.name}
+                      onDelete={ () => {
+                        let filterTags = this.state.filterTags;
+                        let index = filterTags.findIndex( filterTag => filterTag._id === tag._id );
+                        filterTags.splice(index, 1);
+                        this.setState({ filterTags: filterTags });
+                      }}
+                   />
+            }) : null
+          }
+          </div>
         </Grid>
-         <Modal className={classes.modal} open={this.state.modalOpen} onClose={this.handleModalClose}>
-          <Paper className={classes.paper}>
-            <BookmarkForm
-              id={this.state.bookmarkProps.id}
-              href={this.state.bookmarkProps.url}
-              title={this.state.bookmarkProps.title}
-              tags={this.state.bookmarkProps.tags}
-              tagsInputValue={this.state.bookmarkProps.tagsInputValue}
-              setBookmarkState={this.setBookmarkState}
-              handleSubmit={this.handleSubmit}
-            />
-          </Paper>
-        </Modal>
+          <BookmarkForm
+            tags={this.props.tags}
+            bookmarks={this.props.bookmarks}
+            modalOpen={this.state.modalOpen}
+            bookmarkProps={this.state.bookmarkProps}
+            handleModalClose={this.handleModalClose}
+            setFormState={this.setFormState}
+          />
         <Dialog
           open={this.state.alertOpen}
           onClose={() => this.setState({alertOpen: false})}
@@ -223,31 +180,26 @@ class BookmarkManager extends React.Component {
           </Paper>
         </Dialog>
         <Menu
+          disableAutoFocusItem
           open={this.state.menuOpen}
-          onClick={ () => this.setState({ menuOpen: false }) }
           anchorEl={this.state.vertMenuAnchorEl}
+          onClose={ () => { this.setState({ menuOpen: false }) }}
           PaperProps={{ style: { width: 150 } }}
         >
-          <MenuItem onClick={ () => { this.setState({ modalOpen: true }) } }>
-            Edit
-          </MenuItem>
-          <MenuItem onClick={ () => { this.handleDelete() } }>
-            Delete
-          </MenuItem>
+          <MenuItem onClick={this.handleEditClick}>Edit</MenuItem>
+          <MenuItem onClick={this.handleDeleteClick}>Delete</MenuItem>
         </Menu>
         {
           // wait for bookmarks to be assigned in state
-          this.state.bookmarks.length === 0 ? null
+          this.props.bookmarks.length === 0 ? null
 
           :
 
-          this.state.bookmarks.map( (bookmark, index) => {
+          this.props.bookmarks.map( (bookmark, index) => {
 
-            // only render items with bookmark/tag names that match input (filter)
-            let bookmarkMatch = bookmark.title.toLowerCase().includes(this.state.filterValue.toLowerCase());
-            let tagMatch = bookmark.tags.find( tag => tag.name.toLowerCase().includes(this.state.filterValue.toLowerCase()));
+            let tagMatch = this.state.filterTags.every( filterTag => bookmark.tags.find( bookmarkTag => bookmarkTag._id === filterTag._id));
 
-            if(!bookmarkMatch && !tagMatch) { return null; }
+            if(!tagMatch) { return null; }
 
             return (
               <BookmarkListItem
@@ -256,7 +208,7 @@ class BookmarkManager extends React.Component {
                 href={bookmark.url}
                 anchorText={bookmark.title}
                 tags={bookmark.tags}
-                delete={this.handleDelete}
+                delete={this.handleDeleteClick}
                 edit={this.handleEdit}
                 vertMenu={this.handleVertMenuClick}
                 anchorEl={this.state.vertMenuAnchorEl}

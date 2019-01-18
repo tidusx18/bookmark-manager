@@ -1,14 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import EditIcon from '@material-ui/icons/Edit';
 import Chip from '@material-ui/core/Chip';
 
 const styles = {
@@ -40,7 +37,7 @@ class FavoriteBookmark extends React.Component {
     const { classes } = this.props;
 
     return (
-          <ListItem dense divider className={classes.li}>
+          <ListItem disableGutters dense divider className={classes.li}>
               <IconButton
                 disableRipple
                 onClick={ (event) => { this.handleVertMenuClick(event.target, this.props) }}>
@@ -52,8 +49,8 @@ class FavoriteBookmark extends React.Component {
                   {
                     this.props.tags.map( (tag) => {
                       return <Chip
-                              className={classes.chip}
                               key={tag._id}
+                              className={classes.chip}
                               variant='outlined'
                               label={tag.name}
                               color='primary'
