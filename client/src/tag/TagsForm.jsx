@@ -75,7 +75,6 @@ class BookmarkForm extends React.Component {
     this.handleTagsMenuItemClick = this.handleTagsMenuItemClick.bind(this);
     this.deleteTag = this.deleteTag.bind(this);
     this.filterTags = this.filterTags.bind(this);
-    this.checkDuplicates = this.checkDuplicates.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -148,23 +147,23 @@ class BookmarkForm extends React.Component {
   	if(input && tagsMatchingInput.length > 0) {
   		const { classes } = this.props;
 
-		return (
-			<Paper className={classes.tagListPaper}>
-			{
-			    tagsMatchingInput.map((tag, index) => (
-			      <MenuItem
-			        key={tag._id}
-			        name='tags'
-			        value={tag}
-			        tabIndex={0}
-			        onClick={ event => this.handleTagsMenuItemClick(tag, event) }
-			      >
-			        {tag.name}
-			      </MenuItem>
-			    ))
-			  }
-			</Paper>
-		)
+  		return (
+  			<Paper className={classes.tagListPaper}>
+  			{
+  			    tagsMatchingInput.map((tag, index) => (
+  			      <MenuItem
+  			        key={tag._id}
+  			        name='tags'
+  			        value={tag}
+  			        tabIndex={0}
+  			        onClick={ event => this.handleTagsMenuItemClick(tag, event) }
+  			      >
+  			        {tag.name}
+  			      </MenuItem>
+  			    ))
+  			  }
+  			</Paper>
+  		)
   	}
 
   	if(input && tagsMatchingInput.length === 0) {
@@ -180,56 +179,35 @@ class BookmarkForm extends React.Component {
   	return null;
   }
 
-  checkDuplicates() {
-    let bookmarks = this.props.bookmarks;
-    let bookmarkProps = this.props.bookmarkProps;
-
-    // check title and url for duplicates against existing bookmarks
-    let foundTitle = bookmarks.find( bookmark => bookmark.title.match(new RegExp(`^${bookmarkProps.title}$`, 'i')) );
-    let foundUrl = bookmarks.find( bookmark => bookmark.url.match(new RegExp(`^${bookmarkProps.url}$`, 'i')) );
-
-    if(!bookmarkProps.id && (foundTitle || foundUrl)) {
-      this.setState({
-      	dialogOpen: true,
-      	dialogContent: foundUrl ? 'URL' : 'title'
-      });
-
-      return true;
-    }
-  }
-
   handleSubmit(event) {
     event.preventDefault();
 
-    if(this.checkDuplicates()) { return null; }
-
-    let bookmarks = this.props.bookmarks;
+    let checkedBookmarks = this.props.checkedBookmarks;
     let bookmarkProps = this.props.bookmarkProps;
 
-    let config = {};
+    checkedBookmarks.forEach( checkedBookmark => {
 
-    if(!bookmarkProps.id) {
-      config.endpoint = 'create'
-      config.method = 'POST'
-    }
-    else {
-      config.endpoint = `${bookmarkProps.id}/update`
-      config.method = 'PUT'
-    }
+      let newTags = bookmarkProps.tags.filter( tag => {
+        return !checkedBookmark.tags.find( checkedBookmarkTag => checkedBookmarkTag._id === tag._id)
+      });
 
-    fetch(`/api/bookmarks/${config.endpoint}`, {
-      method: config.method,
-      headers: {
-      'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-            title: bookmarkProps.title,
-            url: bookmarkProps.url,
-            tags: bookmarkProps.tags,
-            })
-    })
-      .then( res => res.json() )
-      .then( res => { this.handleModalClose() } );
+      console.log('Checked Bookmark: ', checkedBookmark._id);
+      console.log('New Tags: ', newTags);
+
+      fetch(`/api/bookmarks/${checkedBookmark._id}/update`, {
+        method: 'PUT',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+              title: checkedBookmark.title,
+              url: checkedBookmark.url,
+              tags: checkedBookmark.tags.concat(newTags),
+              })
+      })
+        .then( res => res.json() )
+        .then( res => { this.handleModalClose() } );
+    });
   }
 
 	render() {
@@ -281,30 +259,6 @@ class BookmarkForm extends React.Component {
 			    }) : null
 			  }
 			</div>
-
-			<Input
-			  name='title'
-			  className={classes.input}
-			  inputProps={{
-				placeholder: 'Bookmark Title',
-			    autoComplete: 'off',
-			    value: this.props.bookmarkProps.title,
-			  }}
-			  inputRef={input => this.titleInput = input}
-			  onChange={this.handleInputChange}
-			/>
-
-			<Input
-			  	name='url'
-			  	className={classes.input}
-			  	inputProps={{
-			    	placeholder: 'URL',
-			    	autoComplete: 'off',
-			    	value: this.props.bookmarkProps.url,
-			  	}}
-			  	inputRef={input => this.urlInput = input}
-				onChange={this.handleInputChange}
-					/>
 
 			<Button
 				className={classes.button}

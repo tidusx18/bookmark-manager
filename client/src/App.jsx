@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
+import Switch from '@material-ui/core/Switch';
 import AddIcon from '@material-ui/icons/AddCircle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,12 +16,15 @@ import ListItemText from '@material-ui/core/ListItemText';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import LabelIcon from '@material-ui/icons/Label';
 import MenuIcon from '@material-ui/icons/Menu';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Tags from './tag/TagList.jsx';
 import Bookmarks from './bookmark/Bookmarks.jsx';
 // import Modal from '@material-ui/core/Modal';
+import TagsForm from './tag/TagsForm.jsx';
 import BookmarkForm from './bookmark/BookmarkForm.jsx';
 
 const drawerWidth = 240;
@@ -55,15 +59,16 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
-  addBookmarkButton: {
+  toolbarButton: {
     marginLeft: 10,
   },
 });
 
-class Nav extends React.Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       mobileOpen: false,
       modalOpen: false,
@@ -76,6 +81,8 @@ class Nav extends React.Component {
         tags: [],
         tagsInputValue: '',
       },
+      batchActions: false,
+      checkedBookmarks: [],
     };
   }
 
@@ -90,6 +97,54 @@ class Nav extends React.Component {
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
+
+  handlebatchActionsToggle = (event) => {
+    this.setState({ batchActions: event.target.checked ? true : false });
+  }
+
+  setCheckedBookmarks = (event) => {
+    let bookmark = JSON.parse(event.target.value);
+    let checkedBookmarks = this.state.checkedBookmarks;
+
+    if(event.target.checked) {
+      this.setState({ checkedBookmarks: checkedBookmarks.concat([bookmark]) })
+    }
+
+    else {
+      let index = this.state.checkedBookmarks.findIndex( checkedBookmark => checkedBookmark._id === bookmark._id);
+      checkedBookmarks.splice(index, 1);
+      this.setState({ checkedBookmarks: checkedBookmarks });
+    }
+  }
+
+  handleBatchDeleteClick = () => {
+    if( !window.confirm(`Delete ${this.state.checkedBookmarks.length} selected bookmarks?`) ) { return; }
+
+    this.state.checkedBookmarks.forEach( bookmark => {
+      fetch(`/api/bookmarks/${bookmark._id}/delete`, {
+        method: 'DELETE'
+      })
+        .then( res => res.json() )
+        .then( res => {
+          console.log('Bookmark Deleted: ', res)
+          this.refreshBookmarks();
+        } );
+    });
+  }
+
+
+  handlebatchActionsTagsClick = () => {
+    this.setState({
+      modalOpen: true,
+      bookmarkProps: {
+        id: '',
+        title: '',
+        url: '',
+        tags: [],
+        tagsInputValue: '',
+      }
+    });
+  }
 
   handleAddBookmarkClick = () => {
     this.setState({
@@ -113,16 +168,17 @@ class Nav extends React.Component {
   }
 
   handleModalClose = () => {
-    this.setState({ modalOpen: false });
+    console.log('app')
+    this.setState({ modalOpen: false, checkedBookmarks: [] });
+    document.querySelectorAll('input.mycheckbox').forEach( checkbox => console.log(checkbox) );
     this.refreshBookmarks();
   }
 
   refreshBookmarks = () => {
     console.log('refresh bookmarks')
-    fetch('/api/bookmarks').then( res => res.json() )
-      .then( res => {
-        console.log(res)
-        this.setState({ bookmarks: res })} )
+    fetch('/api/bookmarks')
+      .then( res => res.json() )
+      .then( res => this.setState({ bookmarks: res }) )
       .catch( err => console.log('Error fetching bookmarks: ', err) );
   }
 
@@ -132,30 +188,46 @@ class Nav extends React.Component {
     const drawer = (
       <div>
         <div className={classes.toolbar} />
+
         <Divider />
+
         <List>
+
           <ListItem button component='a' href='/'>
             <ListItemIcon>
               <BookmarksIcon />
             </ListItemIcon>
             <ListItemText primary='Bookmarks' />
           </ListItem>
+
           <ListItem button component='a' href='/tags'>
             <ListItemIcon>
               <LabelIcon />
             </ListItemIcon>
             <ListItemText primary='Tags' />
           </ListItem>
+
+          <Divider />
+
+          <ListItem>
+            <ListItemText primary='Batch Actions' />
+            <Switch color='primary' onChange={this.handlebatchActionsToggle} />
+          </ListItem>
+
         </List>
+
         <Divider />
       </div>
     );
 
     return (
       <div className={classes.root}>
+
         <CssBaseline />
+
         <AppBar position='fixed' className={classes.appBar}>
           <Toolbar>
+
             <IconButton
               color='inherit'
               aria-label='Open drawer'
@@ -164,18 +236,47 @@ class Nav extends React.Component {
             >
               <MenuIcon />
             </IconButton>
+
             <Typography variant='title' color='inherit' noWrap>
               {document.location.pathname === '/' ? 'Bookmarks' : 'Tags'}
             </Typography>
-            <IconButton className ={classes.addBookmarkButton} disableRipple color='inherit' onClick={this.handleAddBookmarkClick}>
+
               {
-                document.location.pathname === '/' ? <AddIcon /> : null
+                document.location.pathname === '/' ?
+
+                <IconButton className ={classes.toolbarButton} disableRipple color='inherit' onClick={this.handleAddBookmarkClick}>
+                  <AddIcon />
+                </IconButton>
+
+                : null
               }
-            </IconButton>
+
+              {
+                document.location.pathname === '/'  && this.state.batchActions  ?
+
+                <IconButton className ={classes.toolbarButton} disableRipple color='inherit' onClick={this.handleBatchDeleteClick}>
+                    <DeleteIcon />
+                </IconButton>
+
+                : null
+              }
+
+              {
+                document.location.pathname === '/'  && this.state.batchActions  ?
+
+                <IconButton className ={classes.toolbarButton} disableRipple color='inherit' onClick={this.handlebatchActionsTagsClick}>
+                    <EditIcon />
+                </IconButton>
+
+                : null
+              }
+
           </Toolbar>
         </AppBar>
+
         <nav className={classes.drawer}>
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+
           <Hidden smUp implementation='css'>
             <Drawer
               container={this.props.container}
@@ -193,6 +294,7 @@ class Nav extends React.Component {
               {drawer}
             </Drawer>
           </Hidden>
+
           <Hidden xsDown implementation='css'>
             <Drawer
               classes={{
@@ -204,22 +306,45 @@ class Nav extends React.Component {
               {drawer}
             </Drawer>
           </Hidden>
+
         </nav>
-        <BookmarkForm
-          tags={this.state.tags}
-          bookmarks={this.state.bookmarks}
-          modalOpen={this.state.modalOpen}
-          bookmarks={this.state.bookmarks}
-          bookmarkProps={this.state.bookmarkProps}
-          handleModalClose={this.handleModalClose}
-          setFormState={this.setFormState}
-        />
+
+        {
+          this.state.batchActions ?
+
+          <TagsForm
+            modalOpen={this.state.modalOpen}
+            tags={this.state.tags}
+            checkedBookmarks={this.state.checkedBookmarks}
+            bookmarkProps={this.state.bookmarkProps}
+            handleModalClose={this.handleModalClose}
+            setFormState={this.setFormState}
+          />
+
+          :
+
+          <BookmarkForm
+            modalOpen={this.state.modalOpen}
+            tags={this.state.tags}
+            bookmarks={this.state.bookmarks}
+            bookmarkProps={this.state.bookmarkProps}
+            handleModalClose={this.handleModalClose}
+            setFormState={this.setFormState}
+          />
+        }
+
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Route
             exact path='/'
             render={() => {
-              return <Bookmarks tags={this.state.tags} bookmarks={this.state.bookmarks} refreshBookmarks={this.refreshBookmarks}/>
+              return  <Bookmarks
+                        tags={this.state.tags}
+                        bookmarks={this.state.bookmarks}
+                        batchActions={this.state.batchActions}
+                        setCheckedBookmarks={this.setCheckedBookmarks}
+                        refreshBookmarks={this.refreshBookmarks}
+                      />
             }}
           />
           <Route path='/tags' component={Tags} />
@@ -229,7 +354,7 @@ class Nav extends React.Component {
   }
 }
 
-// Nav.propTypes = {
+// App.propTypes = {
 //   classes: PropTypes.object.isRequired,
 //   // Injected by the documentation to work in an iframe.
 //   // You won't need it on your project.
@@ -237,4 +362,4 @@ class Nav extends React.Component {
 //   theme: PropTypes.object.isRequired,
 // };
 
-export default withStyles(styles, { withTheme: true })(Nav);
+export default withStyles(styles, { withTheme: true })(App);

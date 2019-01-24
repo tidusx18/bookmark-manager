@@ -1,15 +1,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
-import Modal from '@material-ui/core/Modal';
 import Dialog from '@material-ui/core/Dialog';
-import List from '@material-ui/core/List';
+// import List from '@material-ui/core/List';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import BookmarkCard from './BookmarkCard.jsx';
+// import BookmarkCard from './BookmarkCard.jsx';
 import BookmarkListItem from './BookmarkListItem.jsx';
 import Filter from '../form/Filter.jsx';
 import BookmarkForm from './BookmarkForm.jsx';
@@ -65,7 +63,6 @@ class BookmarkManager extends React.Component {
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleVertMenuClick = this.handleVertMenuClick.bind(this);
     this.handleVertMenuClose = this.handleVertMenuClose.bind(this);
-    // this.refreshBookmarks = this.refreshBookmarks.bind(this);
   }
 
   handleFilterInputChange(value) {
@@ -117,9 +114,9 @@ class BookmarkManager extends React.Component {
       menuOpen: true,
       vertMenuAnchorEl: anchorEl,
       bookmarkProps: {
-        id: props.id,
-        title: props.anchorText,
-        url: props.href,
+        id: props._id,
+        title: props.title,
+        url: props.url,
         tags: props.tags,
         tagsInputValue: props.tagsInputValue,
       }
@@ -189,7 +186,8 @@ class BookmarkManager extends React.Component {
           <MenuItem onClick={this.handleEditClick}>Edit</MenuItem>
           <MenuItem onClick={this.handleDeleteClick}>Delete</MenuItem>
         </Menu>
-        {
+          <Grid item xs={12}>
+          {
           // wait for bookmarks to be assigned in state
           this.props.bookmarks.length === 0 ? null
 
@@ -204,19 +202,20 @@ class BookmarkManager extends React.Component {
             return (
               <BookmarkListItem
                 key={bookmark._id}
-                id={bookmark._id}
-                href={bookmark.url}
-                anchorText={bookmark.title}
-                tags={bookmark.tags}
+                bookmark={bookmark}
                 delete={this.handleDeleteClick}
                 edit={this.handleEdit}
                 vertMenu={this.handleVertMenuClick}
                 anchorEl={this.state.vertMenuAnchorEl}
                 menuOpen={this.state.menuOpen}
+                batchActions={this.props.batchActions}
+                setCheckedBookmarks={this.props.setCheckedBookmarks}
               />
             )
           })
+
         }
+          </Grid>
       </Grid>
     )
   }
