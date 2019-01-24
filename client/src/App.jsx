@@ -242,7 +242,7 @@ class App extends React.Component {
             </Typography>
 
               {
-                document.location.pathname === '/' ?
+                document.location.pathname === '/' && !this.state.batchActions ?
 
                 <IconButton className ={classes.toolbarButton} disableRipple color='inherit' onClick={this.handleAddBookmarkClick}>
                   <AddIcon />
