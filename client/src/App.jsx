@@ -82,6 +82,7 @@ class App extends React.Component {
         tagsInputValue: '',
       },
       batchActions: false,
+      minimalView: false,
       checkedBookmarks: [],
     };
   }
@@ -100,6 +101,10 @@ class App extends React.Component {
 
   handlebatchActionsToggle = (event) => {
     this.setState({ batchActions: event.target.checked ? true : false });
+  }
+
+  handleCondensedToggle = (event) => {
+    this.setState({ minimalView: event.target.checked ? true : false });
   }
 
   setCheckedBookmarks = (event) => {
@@ -209,9 +214,14 @@ class App extends React.Component {
 
           <Divider />
 
-          <ListItem>
+          <ListItem dense>
             <ListItemText primary='Batch Actions' />
             <Switch color='primary' onChange={this.handlebatchActionsToggle} />
+          </ListItem>
+
+          <ListItem dense>
+            <ListItemText primary='Minimal View' />
+            <Switch color='primary' onChange={this.handleCondensedToggle} />
           </ListItem>
 
         </List>
@@ -342,6 +352,7 @@ class App extends React.Component {
                         tags={this.state.tags}
                         bookmarks={this.state.bookmarks}
                         batchActions={this.state.batchActions}
+                        minimalView={this.state.minimalView}
                         setCheckedBookmarks={this.setCheckedBookmarks}
                         refreshBookmarks={this.refreshBookmarks}
                       />

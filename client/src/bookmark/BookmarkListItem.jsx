@@ -63,19 +63,48 @@ class FavoriteBookmark extends React.Component {
               }
 
             <ListItemText>
-              <Typography component='a' variant='body2' className={classes.link} href={this.props.bookmark.url} target='_Blank'>{this.props.bookmark.title}</Typography>
-              <Typography component='a' variant='caption' className={classes.link} href={this.props.bookmark.url} target='_Blank'>{this.props.bookmark.url}</Typography>
-                  {
-                    this.props.bookmark.tags.map( (tag) => {
-                      return <Chip
-                              key={tag._id}
-                              className={classes.chip}
-                              variant='outlined'
-                              label={tag.name}
-                              color='primary'
-                            />
-                      })
-                  }
+
+                <Typography
+                  component='a'
+                  variant='body2'
+                  className={classes.link}
+                  href={this.props.bookmark.url}
+                  target='_Blank'>{this.props.bookmark.title}
+                </Typography>
+
+              {
+
+                !this.props.minimalView ?
+
+                <Typography
+                  component='a'
+                  variant='caption'
+                  className={classes.link}
+                  href={this.props.bookmark.url}
+                  target='_Blank'>{this.props.bookmark.url}
+                </Typography>
+
+                : null
+
+              }
+
+                {
+
+                  !this.props.minimalView ?
+
+                  this.props.bookmark.tags.map( (tag) => {
+                    return <Chip
+                            key={tag._id}
+                            className={classes.chip}
+                            variant='outlined'
+                            label={tag.name}
+                            color='primary'
+                          />
+                    })
+
+                  : null
+                }
+
             </ListItemText>
 
           </ListItem>

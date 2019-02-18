@@ -209,6 +209,7 @@ class BookmarkManager extends React.Component {
                 anchorEl={this.state.vertMenuAnchorEl}
                 menuOpen={this.state.menuOpen}
                 batchActions={this.props.batchActions}
+                minimalView={this.props.minimalView}
                 setCheckedBookmarks={this.props.setCheckedBookmarks}
               />
             )
