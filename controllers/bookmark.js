@@ -12,7 +12,7 @@ exports.bookmark_list = (req, res) => {
 
 exports.bookmark_details = (req, res) => {
 
-	bookmark.find({ [req.query.prop]: req.query.value }, null, { lean: true }, (err, results) => {
+	bookmark.find({ [req.query.prop]: decodeURIComponent(req.query.value) }, null, { lean: true }, (err, results) => {
 		console.log(req.query)
 	  	if(err) { res.send(err) }
 	  	res.send(results);
