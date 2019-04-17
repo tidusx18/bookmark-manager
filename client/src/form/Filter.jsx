@@ -20,7 +20,7 @@ const styles = theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
-    width: '40%',
+    width: '100%',
   },
   inputRoot: {
     color: 'inherit',
@@ -129,7 +129,10 @@ class Filter extends React.Component {
         <Input
           name="filter"
           id="filter"
+          fullWidth
           autoFocus
+          autoComplete='off'
+          inputProps={ { inuputProps: { tabIndex: 1 } } }
           inputRef={input => this.filterInput = input}
           placeholder="Filter..."
           value={this.props.filterValue}
