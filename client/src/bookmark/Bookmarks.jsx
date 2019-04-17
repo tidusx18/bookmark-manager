@@ -189,7 +189,7 @@ class BookmarkManager extends React.Component {
           <Grid item xs={12}>
           {
           // wait for bookmarks to be assigned in state
-          this.props.bookmarks.length === 0 ? null
+          this.props.bookmarks.length === 0 || this.state.filterTags.length === 0 ? null
 
           :
 

@@ -107,7 +107,7 @@ class Filter extends React.Component {
             tagsMatchingInput.map((tag, index) => (
               <MenuItem
                 key={tag._id}
-                tabIndex={0}
+                tabIndex={index + 2}
                 onClick={ () => { this.handleTagClick(tag) } }
               >
                 {tag.name}
