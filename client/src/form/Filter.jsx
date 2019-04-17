@@ -132,7 +132,7 @@ class Filter extends React.Component {
           fullWidth
           autoFocus
           autoComplete='off'
-          inputProps={ { inuputProps: { tabIndex: 1 } } }
+          inputProps={ { tabindex: 1 } }
           inputRef={input => this.filterInput = input}
           placeholder="Filter..."
           value={this.props.filterValue}
